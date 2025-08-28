@@ -48,12 +48,7 @@
           <div
             class="flex items-center justify-center gap-4 bg-gradient-to-tr from-[#FB2C36] to-[#FF6900] rounded-lg rounded-b-none p-4"
           >
-            <img
-              src="/tarwood/src/assets/images/warning.svg"
-              alt="warning"
-              width="24"
-              height="24"
-            />
+            <img src="../assets/images/warning.svg" alt="warning" width="24" height="24" />
             <h2 class="font-semibold text-white text-2xl">Обратите внимание</h2>
           </div>
 
@@ -68,7 +63,7 @@
                 :key="index"
                 class="flex items-center gap-4 rounded-lg py-2 px-4 border border-[#FFC9C9] bg-[#FEF2F2]"
               >
-                <img src="/tarwood/src/assets/images/x.svg" alt="img" />
+                <img src="../assets/images/x.svg" alt="img" />
                 <p>{{ text }}</p>
               </div>
             </div>
