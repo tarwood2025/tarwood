@@ -48,7 +48,12 @@
           <div
             class="flex items-center justify-center gap-4 bg-gradient-to-tr from-[#FB2C36] to-[#FF6900] rounded-lg rounded-b-none p-4"
           >
-            <img src="../assets/icons/warning.svg" alt="warning" width="24" height="24" />
+            <img
+              src="/tarwood/src/assets/images/warning.svg"
+              alt="warning"
+              width="24"
+              height="24"
+            />
             <h2 class="font-semibold text-white text-2xl">Обратите внимание</h2>
           </div>
 
@@ -63,7 +68,7 @@
                 :key="index"
                 class="flex items-center gap-4 rounded-lg py-2 px-4 border border-[#FFC9C9] bg-[#FEF2F2]"
               >
-                <img src="../assets/icons/x.svg" alt="img" />
+                <img src="/tarwood/src/assets/images/x.svg" alt="img" />
                 <p>{{ text }}</p>
               </div>
             </div>
@@ -109,7 +114,7 @@ const menu = [
       'При перемещении тяжелой мебели подкладывайте коврики лицевой стороной вниз',
       'Используйте другие средства на мягкой основе для защиты покрытия',
     ],
-    icon: '/src/assets/icons/1.svg',
+    icon: '/tarwood/src/assets/images/1.svg',
   },
   {
     title: 'Правильная обувь',
@@ -119,7 +124,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '/src/assets/icons/2.svg',
+    icon: '/tarwood/src/assets/images/2.svg',
   },
   {
     title: 'Домашние животные',
@@ -127,7 +132,7 @@ const menu = [
       'Следите за тем, чтобы когти у домашних животных были аккуратно подстрижены',
       'Регулярно мойте лапы животных, убирайте следы грязи и песка',
     ],
-    icon: '/src/assets/icons/3.svg',
+    icon: '/tarwood/src/assets/images/3.svg',
   },
   {
     title: 'Защита от солнца',
@@ -136,7 +141,7 @@ const menu = [
       'Периодически перемещайте мебель и ковры для равномерного изменения цвета',
       'Используйте защитные шторы или жалюзи в солнечные дни',
     ],
-    icon: '/src/assets/icons/4.svg',
+    icon: '/tarwood/src/assets/images/4.svg',
   },
   {
     title: 'Температурно-влажностный режим',
@@ -146,7 +151,7 @@ const menu = [
       'В отопительный сезон используйте увлажнитель воздуха',
       'Летом используйте кондиционер или осушитель при повышенной влажности',
     ],
-    icon: '/src/assets/icons/5.svg',
+    icon: '/tarwood/src/assets/images/5.svg',
   },
   {
     title: 'Правильная уборка',
@@ -156,7 +161,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '/src/assets/icons/6.svg',
+    icon: '/tarwood/src/assets/images/6.svg',
   },
   {
     title: 'Ежедневный уход',
@@ -165,7 +170,7 @@ const menu = [
       'Регулярно очищайте коврики, под которыми скапливается пыль и грязь',
       'Убедитесь, что насадка пылесоса не повредит покрытие',
     ],
-    icon: '/src/assets/icons/7.svg',
+    icon: '/tarwood/src/assets/images/7.svg',
   },
   {
     title: 'Правильная уборка',
@@ -174,7 +179,7 @@ const menu = [
       'Используйте чистую воду, тряпку и рекомендованные средства по уходу',
       'Особенно опасны маслянистые жидкости (растительное масло, животные жиры)',
     ],
-    icon: '/src/assets/icons/8.svg',
+    icon: '/tarwood/src/assets/images/8.svg',
   },
 ]
 
@@ -189,19 +194,19 @@ const menu3 = [
   {
     title: 'Влажность',
     temp: '40-60%',
-    icon: '/src/assets/icons/cloud.svg',
+    icon: '/tarwood/src/assets/images/cloud.svg',
     color: '[#3A6757]',
   },
   {
     title: 'Температура',
     temp: '18-22°C',
-    icon: '/src/assets/icons/cloud.svg',
+    icon: '/tarwood/src/assets/images/cloud.svg',
     color: '[#6A8C5D]',
   },
   {
     title: 'Теплый пол',
     temp: '≤27°C',
-    icon: '/src/assets/icons/lightning.svg',
+    icon: '/tarwood/src/assets/images/lightning.svg',
     color: '[#D88B3B]',
   },
 ]

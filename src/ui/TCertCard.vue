@@ -3,7 +3,7 @@
     <div class="flex gap-4 mb-4">
       <div>
         <img
-          src="../assets/icons/file-document.svg"
+          src="/tarwood/src/assets/images/file-document.svg"
           alt="img"
           class="bg-tar-green p-2 rounded-md"
         />
@@ -17,11 +17,11 @@
     </div>
     <div class="flex gap-4">
       <TButton class="w-full flex justify-center items-center gap-2" color="white">
-        <img src="../assets/icons/eye-outline.svg" alt="img" />
+        <img src="/tarwood/src/assets/images/eye-outline.svg" alt="img" />
         Смотреть
       </TButton>
       <TButton class="w-full flex justify-center items-center gap-2" color="green">
-        <img src="../assets/icons/download.svg" alt="img" />
+        <img src="/tarwood/src/assets/images/download.svg" alt="img" />
         Скачать
       </TButton>
     </div>
