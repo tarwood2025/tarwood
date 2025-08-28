@@ -2,7 +2,12 @@ name: Deploy Vite app to GitHub Pages
 
 on:
   push:
-    branches: [main] # деплой при пуше в main
+    branches: [main]
+
+permissions: # 👈 вот этого не хватало
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-deploy:
@@ -27,5 +32,13 @@ jobs:
         with:
           path: dist
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-deploy
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
