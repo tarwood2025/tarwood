@@ -109,7 +109,7 @@ const menu = [
       'При перемещении тяжелой мебели подкладывайте коврики лицевой стороной вниз',
       'Используйте другие средства на мягкой основе для защиты покрытия',
     ],
-    icon: '/tarwood/src/assets/images/1.svg',
+    icon: '../assets/images/1.svg',
   },
   {
     title: 'Правильная обувь',
@@ -119,7 +119,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '/tarwood/src/assets/images/2.svg',
+    icon: '../assets/images/2.svg',
   },
   {
     title: 'Домашние животные',
@@ -127,7 +127,7 @@ const menu = [
       'Следите за тем, чтобы когти у домашних животных были аккуратно подстрижены',
       'Регулярно мойте лапы животных, убирайте следы грязи и песка',
     ],
-    icon: '/tarwood/src/assets/images/3.svg',
+    icon: '../assets/images/3.svg',
   },
   {
     title: 'Защита от солнца',
@@ -136,7 +136,7 @@ const menu = [
       'Периодически перемещайте мебель и ковры для равномерного изменения цвета',
       'Используйте защитные шторы или жалюзи в солнечные дни',
     ],
-    icon: '/tarwood/src/assets/images/4.svg',
+    icon: '../assets/images/4.svg',
   },
   {
     title: 'Температурно-влажностный режим',
@@ -146,7 +146,7 @@ const menu = [
       'В отопительный сезон используйте увлажнитель воздуха',
       'Летом используйте кондиционер или осушитель при повышенной влажности',
     ],
-    icon: '/tarwood/src/assets/images/5.svg',
+    icon: '../assets/images/5.svg',
   },
   {
     title: 'Правильная уборка',
@@ -156,7 +156,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '/tarwood/src/assets/images/6.svg',
+    icon: '../assets/images/6.svg',
   },
   {
     title: 'Ежедневный уход',
@@ -165,7 +165,7 @@ const menu = [
       'Регулярно очищайте коврики, под которыми скапливается пыль и грязь',
       'Убедитесь, что насадка пылесоса не повредит покрытие',
     ],
-    icon: '/tarwood/src/assets/images/7.svg',
+    icon: '../assets/images/7.svg',
   },
   {
     title: 'Правильная уборка',
@@ -174,7 +174,7 @@ const menu = [
       'Используйте чистую воду, тряпку и рекомендованные средства по уходу',
       'Особенно опасны маслянистые жидкости (растительное масло, животные жиры)',
     ],
-    icon: '/tarwood/src/assets/images/8.svg',
+    icon: '../assets/images/8.svg',
   },
 ]
 
@@ -189,19 +189,19 @@ const menu3 = [
   {
     title: 'Влажность',
     temp: '40-60%',
-    icon: '/tarwood/src/assets/images/cloud.svg',
+    icon: '../assets/images/cloud.svg',
     color: '[#3A6757]',
   },
   {
     title: 'Температура',
     temp: '18-22°C',
-    icon: '/tarwood/src/assets/images/cloud.svg',
+    icon: '../assets/images/cloud.svg',
     color: '[#6A8C5D]',
   },
   {
     title: 'Теплый пол',
     temp: '≤27°C',
-    icon: '/tarwood/src/assets/images/lightning.svg',
+    icon: '../assets/images/lightning.svg',
     color: '[#D88B3B]',
   },
 ]

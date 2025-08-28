@@ -73,10 +73,10 @@ const filters = ['Все', 'Палубная доска', 'Венгерская 
 const activeFilter = ref('Все')
 
 const items = ref([
-  { title: 'Балтик', img: '/tarwood/src/assets/images/1.jpg', type: 'Палубная доска' },
-  { title: 'Барни', img: '/tarwood/src/assets/images/2.jpg', type: 'Палубная доска' },
-  { title: 'Бронза', img: '/tarwood/src/assets/images/3.jpg', type: 'Венгерская елка' },
-  { title: 'Венге', img: '/tarwood/src/assets/images/4.jpg', type: 'Французская елка' },
+  { title: 'Балтик', img: '../assets/images/1.jpg', type: 'Палубная доска' },
+  { title: 'Барни', img: '../assets/images/2.jpg', type: 'Палубная доска' },
+  { title: 'Бронза', img: '../assets/images/3.jpg', type: 'Венгерская елка' },
+  { title: 'Венге', img: '../assets/images/4.jpg', type: 'Французская елка' },
   { title: 'Береза', img: null, type: 'Французская елка' },
   { title: 'Дуб', img: null, type: 'Палубная доска' },
   { title: 'Иволга', img: null, type: 'Венгерская елка' },

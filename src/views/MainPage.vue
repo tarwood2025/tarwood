@@ -26,32 +26,32 @@ const infoList = [
   {
     title: 'Экологичность',
     description: 'Натуральное дерево с минимальной обработкой, безопасно для здоровья',
-    icon: '/tarwood/src/assets/images/sprout.svg',
+    icon: '../assets/images/sprout.svg',
   },
   {
     title: 'Прочность',
     description: 'Двухслойная конструкция обеспечивает стабильность и долговечность',
-    icon: '/tarwood/src/assets/images/all-inclusive.svg',
+    icon: '../assets/images/all-inclusive.svg',
   },
   {
     title: 'Простой монтаж',
     description: 'Замковое соединение позволяет быстро и легко укладывать покрытие',
-    icon: '/tarwood/src/assets/images/home-edit.svg',
+    icon: '../assets/images/home-edit.svg',
   },
   {
     title: 'Экономичность',
     description: 'Оптимальное соотношение цены и качества по сравнению с массивом',
-    icon: '/tarwood/src/assets/images/chart-areaspline.svg',
+    icon: '../assets/images/chart-areaspline.svg',
   },
   {
     title: 'Дизайн',
     description: 'Широкий выбор текстур и оттенков для любого интерьера',
-    icon: '/tarwood/src/assets/images/material-design.svg',
+    icon: '../assets/images/material-design.svg',
   },
   {
     title: 'Стабильность',
     description: 'Устойчивость к температурным колебаниям и влажности',
-    icon: '/tarwood/src/assets/images/thermometer-lines.svg',
+    icon: '../assets/images/thermometer-lines.svg',
   },
 ]
 
