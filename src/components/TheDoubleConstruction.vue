@@ -50,8 +50,9 @@
           class="rounded-2xl object-cover w-full"
         />
 
+        <!-- Список -->
         <div
-          class="rounded-2xl bg-[#F5F1EB] p-4 shadow-lg w-full max-w-xs absolute -bottom-16 left-1/2 -translate-x-1/2 lg:-left-56 lg:translate-x-0"
+          class="rounded-2xl bg-[#F5F1EB] p-4 shadow-lg w-full max-w-[370px] mx-auto mt-6 relative lg:absolute lg:-bottom-16 lg:-left-56 lg:translate-x-0 lg:mx-0 lg:mt-0"
         >
           <h3 class="font-semibold text-lg md:text-xl">Преимущества технологии</h3>
           <ul>
@@ -66,6 +67,7 @@
           </ul>
         </div>
 
+        <!-- Бейдж -->
         <div
           class="absolute top-5 right-5 rounded-md bg-[#6A8C5D] p-2 shadow-lg text-white font-bold text-sm sm:text-base"
         >

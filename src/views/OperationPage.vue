@@ -11,9 +11,8 @@
     </section>
 
     <section>
-      <div class="text-center max-w-7xl mx-auto py-10 md:py-20 px-4">
+      <div class="text-center max-w-7xl mx-auto py-10 md:py-10 px-4">
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold">Общие рекомендации по уходу</h2>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="shadow-sm rounded-lg mt-8" v-for="(item, idx) in menu" :key="idx">
             <div>
@@ -100,6 +99,17 @@
 
 <script setup lang="ts">
 import TheChouse from '@/components/TheChouse.vue'
+import svg1 from '@/assets/images/1.svg'
+import svg2 from '@/assets/images/2.svg'
+import svg3 from '@/assets/images/3.svg'
+import svg4 from '@/assets/images/4.svg'
+import svg5 from '@/assets/images/5.svg'
+import svg6 from '@/assets/images/6.svg'
+import svg7 from '@/assets/images/7.svg'
+import svg8 from '@/assets/images/8.svg'
+
+import cloud from '@/assets/images/cloud.svg'
+import lightning from '@/assets/images/lightning.svg'
 
 const menu = [
   {
@@ -109,7 +119,7 @@ const menu = [
       'При перемещении тяжелой мебели подкладывайте коврики лицевой стороной вниз',
       'Используйте другие средства на мягкой основе для защиты покрытия',
     ],
-    icon: '../assets/images/1.svg',
+    icon: svg1,
   },
   {
     title: 'Правильная обувь',
@@ -119,7 +129,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '../assets/images/2.svg',
+    icon: svg2,
   },
   {
     title: 'Домашние животные',
@@ -127,7 +137,7 @@ const menu = [
       'Следите за тем, чтобы когти у домашних животных были аккуратно подстрижены',
       'Регулярно мойте лапы животных, убирайте следы грязи и песка',
     ],
-    icon: '../assets/images/3.svg',
+    icon: svg3,
   },
   {
     title: 'Защита от солнца',
@@ -136,7 +146,7 @@ const menu = [
       'Периодически перемещайте мебель и ковры для равномерного изменения цвета',
       'Используйте защитные шторы или жалюзи в солнечные дни',
     ],
-    icon: '../assets/images/4.svg',
+    icon: svg4,
   },
   {
     title: 'Температурно-влажностный режим',
@@ -146,7 +156,7 @@ const menu = [
       'В отопительный сезон используйте увлажнитель воздуха',
       'Летом используйте кондиционер или осушитель при повышенной влажности',
     ],
-    icon: '../assets/images/5.svg',
+    icon: svg5,
   },
   {
     title: 'Правильная уборка',
@@ -156,7 +166,7 @@ const menu = [
       'Используйте коврики в местах интенсивного использования (прихожая, кухня)',
       'Избегайте обуви с металлическими набойками',
     ],
-    icon: '../assets/images/6.svg',
+    icon: svg6,
   },
   {
     title: 'Ежедневный уход',
@@ -165,7 +175,7 @@ const menu = [
       'Регулярно очищайте коврики, под которыми скапливается пыль и грязь',
       'Убедитесь, что насадка пылесоса не повредит покрытие',
     ],
-    icon: '../assets/images/7.svg',
+    icon: svg7,
   },
   {
     title: 'Правильная уборка',
@@ -174,7 +184,7 @@ const menu = [
       'Используйте чистую воду, тряпку и рекомендованные средства по уходу',
       'Особенно опасны маслянистые жидкости (растительное масло, животные жиры)',
     ],
-    icon: '../assets/images/8.svg',
+    icon: svg8,
   },
 ]
 
@@ -189,20 +199,20 @@ const menu3 = [
   {
     title: 'Влажность',
     temp: '40-60%',
-    icon: '../assets/images/cloud.svg',
+    icon: cloud,
     color: '[#3A6757]',
   },
   {
     title: 'Температура',
     temp: '18-22°C',
-    icon: '../assets/images/cloud.svg',
+    icon: cloud,
     color: '[#6A8C5D]',
   },
   {
     title: 'Теплый пол',
     temp: '≤27°C',
-    icon: '../assets/images/lightning.svg',
-    color: '[#D88B3B]',
+    icon: lightning,
+    color: '[#ca7a1f]',
   },
 ]
 </script>

@@ -65,7 +65,7 @@
             class="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-tar-green hidden md:block"
           ></div>
 
-          <div class="space-y-8 md:space-y-12">
+          <div class="space-y-2 md:space-y-2">
             <div
               v-for="(event, index) in timeline"
               :key="index"
@@ -79,16 +79,13 @@
                   'md:pl-8 md:text-left md:order-2': index % 2 === 1,
                 }"
               >
-                <div class="bg-white rounded-lg shadow-sm p-4 md:p-6 max-w-md mx-auto md:mx-0">
-                  <h3 class="text-lg font-semibold mb-2 text-green-800">
-                    {{ event.year }}
-                  </h3>
-                  <h4 class="font-medium mb-2 text-gray-900">
-                    {{ event.title }}
-                  </h4>
-                  <p class="text-sm text-gray-600 leading-relaxed">
-                    {{ event.description }}
-                  </p>
+                <div
+                  class="bg-white rounded-lg shadow-sm px-3 py-2 md:px-4 max-w-md"
+                  :class="index % 2 === 0 ? 'mx-auto md:ml-auto' : 'mx-auto md:mr-auto'"
+                >
+                  <h3 class="text-lg font-semibold mb-2 text-green-800">{{ event.year }}</h3>
+                  <h4 class="font-medium mb-2 text-gray-900">{{ event.title }}</h4>
+                  <p class="text-sm text-gray-600 leading-relaxed">{{ event.description }}</p>
                 </div>
               </div>
 
@@ -97,11 +94,6 @@
                 class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2"
               >
                 <div class="w-4 h-4 bg-tar-green rounded-full border-4 border-[#F5F1EB]"></div>
-              </div>
-
-              <!-- Center Dot - Mobile -->
-              <div class="md:hidden flex justify-center my-4">
-                <div class="w-3 h-3 bg-tar-green rounded-full"></div>
               </div>
 
               <!-- Empty spacer for alternating layout -->
@@ -124,6 +116,7 @@
               :key="idx"
               class="bg-white rounded-xl p-4 sm:p-6 shadow-sm text-center"
             >
+              <img :src="stat.icon" alt="icon" class="w-14 h-14 mx-auto mb-2 sm:mb-4" />
               <div class="text-xl sm:text-2xl md:text-3xl font-bold text-green-700 mb-1 sm:mb-2">
                 {{ stat.value }}
               </div>
@@ -142,6 +135,10 @@
 
 <script setup lang="ts">
 import TheChouse from '@/components/TheChouse.vue'
+import icon1 from '@/assets/images/progress-upload.svg'
+import icon2 from '@/assets/images/home-lightbulb-outline.svg'
+import icon3 from '@/assets/images/check-decagram.svg'
+import icon4 from '@/assets/images/account-group.svg'
 
 const timeline = [
   {
@@ -173,10 +170,10 @@ const timeline = [
 ]
 
 const stats = [
-  { value: '10+', label: 'лет опыта' },
-  { value: '500+', label: 'проектов' },
-  { value: '100%', label: 'качество' },
-  { value: 'N+', label: 'партнеров' },
+  { value: '10+', label: 'лет опыта', icon: icon1 },
+  { value: 'N+', label: 'проектов', icon: icon2 },
+  { value: '100%', label: 'качество', icon: icon3 },
+  { value: 'N+', label: 'партнеров', icon: icon4 },
 ]
 </script>
 

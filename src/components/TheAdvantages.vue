@@ -7,7 +7,9 @@
       </p>
     </div>
 
-    <div class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl">
+    <div
+      class="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl justify-items-center"
+    >
       <TInfoCard v-for="(item, idx) in infoList" :key="idx" :info="item" />
     </div>
   </section>

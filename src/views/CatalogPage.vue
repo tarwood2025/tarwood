@@ -68,15 +68,19 @@
 import TheChouse from '@/components/TheChouse.vue'
 import TheUnknownImg from '@/ui/TheUnknownImg.vue'
 import { ref, computed } from 'vue'
+import img1 from '@/assets/images/1.jpg'
+import img2 from '@/assets/images/2.jpg'
+import img3 from '@/assets/images/3.jpg'
+import img4 from '@/assets/images/4.jpg'
 
 const filters = ['Все', 'Палубная доска', 'Венгерская елка', 'Французская елка']
 const activeFilter = ref('Все')
 
 const items = ref([
-  { title: 'Балтик', img: '../assets/images/1.jpg', type: 'Палубная доска' },
-  { title: 'Барни', img: '../assets/images/2.jpg', type: 'Палубная доска' },
-  { title: 'Бронза', img: '../assets/images/3.jpg', type: 'Венгерская елка' },
-  { title: 'Венге', img: '../assets/images/4.jpg', type: 'Французская елка' },
+  { title: 'Балтик', img: img1, type: 'Палубная доска' },
+  { title: 'Барни', img: img2, type: 'Палубная доска' },
+  { title: 'Бронза', img: img3, type: 'Венгерская елка' },
+  { title: 'Венге', img: img4, type: 'Французская елка' },
   { title: 'Береза', img: null, type: 'Французская елка' },
   { title: 'Дуб', img: null, type: 'Палубная доска' },
   { title: 'Иволга', img: null, type: 'Венгерская елка' },
