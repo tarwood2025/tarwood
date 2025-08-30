@@ -21,12 +21,13 @@ import TheChouse from '@/components/TheChouse.vue'
 import TheDoubleConstruction from '@/components/TheDoubleConstruction.vue'
 import TheSertificats from '@/components/TheSertificats.vue'
 import TheTitle from '@/components/TheTitle.vue'
+import sprout from '@/assets/images/sprout.svg'
 
 const infoList = [
   {
     title: 'Экологичность',
     description: 'Натуральное дерево с минимальной обработкой, безопасно для здоровья',
-    icon: new URL('/tarwood/src/assets/images/sprout.svg', import.meta.url).href,
+    icon: sprout,
   },
   {
     title: 'Прочность',
