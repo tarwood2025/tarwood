@@ -26,12 +26,12 @@ const infoList = [
   {
     title: 'Экологичность',
     description: 'Натуральное дерево с минимальной обработкой, безопасно для здоровья',
-    icon: '../assets/images/sprout.svg',
+    icon: new URL('/tarwood/src/assets/images/sprout.svg', import.meta.url).href,
   },
   {
     title: 'Прочность',
     description: 'Двухслойная конструкция обеспечивает стабильность и долговечность',
-    icon: '../assets/images/all-inclusive.svg',
+    icon: '/tarwood/src/assets/images/all-inclusive.svg',
   },
   {
     title: 'Простой монтаж',
