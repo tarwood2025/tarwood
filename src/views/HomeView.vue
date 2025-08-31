@@ -19,8 +19,6 @@ import TheHeader from '@/components/TheHeader.vue'
 const routerMenu: { name: string; to: string }[] = [
   { name: 'Главная', to: '/' },
   { name: 'Продукция', to: '/products' },
-  { name: 'О нас', to: '/about' },
-  { name: 'Эксплуатация', to: '/operation' },
   // { name: 'Галерея', to: '/gallery' },
   // { name: 'Где купить', to: '/where-to-buy' },
 ]

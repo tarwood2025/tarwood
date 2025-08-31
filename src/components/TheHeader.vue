@@ -6,10 +6,26 @@
     </div>
 
     <!-- Десктопное меню -->
-    <nav class="hidden md:block">
+    <nav class="hidden md:block relative">
       <ul class="flex font-semibold text-base lg:text-lg space-x-6 lg:space-x-12">
         <li v-for="(item, idx) in routerMenu" :key="idx" class="cursor-pointer">
           <router-link :to="item.to">{{ item.name }}</router-link>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="relative group">
+          <span class="cursor-pointer">Информация</span>
+
+          <!-- Выпадающее меню -->
+          <ul
+            class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+          >
+            <li v-for="(item, idx) in infoMenu" :key="idx">
+              <router-link :to="item.to" class="block px-4 py-2 hover:bg-gray-100 rounded-lg">
+                {{ item.name }}
+              </router-link>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -37,10 +53,29 @@
         <!-- Навигация -->
         <nav>
           <ul class="space-y-4 font-semibold text-lg">
-            <li v-for="(item, idx) in routerMenu" :key="idx" class="cursor-pointer">
+            <li v-for="(item, idx) in routerMenu" :key="idx">
               <router-link :to="item.to" class="block" @click="isOpen = false">
                 {{ item.name }}
               </router-link>
+            </li>
+
+            <!-- Dropdown для мобильного -->
+            <li>
+              <button
+                class="w-full text-left flex justify-between items-center"
+                @click="isInfoOpen = !isInfoOpen"
+              >
+                Информация
+                <span>{{ isInfoOpen ? '−' : '+' }}</span>
+              </button>
+
+              <ul v-if="isInfoOpen" class="mt-2 pl-4 space-y-2">
+                <li v-for="(item, idx) in infoMenu" :key="idx">
+                  <router-link :to="item.to" class="block" @click="isOpen = false">
+                    {{ item.name }}
+                  </router-link>
+                </li>
+              </ul>
             </li>
           </ul>
         </nav>
@@ -65,16 +100,13 @@ defineProps<{
   }[]
 }>()
 
-const isOpen = ref(false)
-</script>
+// Дополнительное меню для "Информация"
+const infoMenu = [
+  { name: 'О компании', to: '/about' },
+  { name: 'Уход', to: '/operation' },
+  { name: 'Укладка', to: '/laying' },
+]
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+const isOpen = ref(false)
+const isInfoOpen = ref(false) // для мобильного dropdown
+</script>

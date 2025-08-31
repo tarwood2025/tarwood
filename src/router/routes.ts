@@ -4,7 +4,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'default',
-    component: () => import('../views/HomeView.vue'),
+    component: () => import('@/views/HomeView.vue'),
     meta: {
       title: 'Деревянные изделия ручной работы',
     },
@@ -12,7 +12,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '',
         name: 'main',
-        component: () => import('../views/MainPage.vue'),
+        component: () => import('@/views/MainPage.vue'),
         meta: {
           title: 'Деревянные изделия ручной работы',
         },
@@ -20,7 +20,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/products',
         name: 'products',
-        component: () => import('../views/CatalogPage.vue'),
+        component: () => import('@/views/CatalogPage.vue'),
         meta: {
           title: 'Каталог продукции',
         },
@@ -28,7 +28,7 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/about',
         name: 'about',
-        component: () => import('../views/AboutPage.vue'),
+        component: () => import('@/views/AboutPage.vue'),
         meta: {
           title: 'О нашей компании',
         },
@@ -36,9 +36,17 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/operation',
         name: 'operation',
-        component: () => import('../views/OperationPage.vue'),
+        component: () => import('@/views/OperationPage.vue'),
         meta: {
           title: 'Эксплуатация',
+        },
+      },
+      {
+        path: '/laying',
+        name: 'laying',
+        component: () => import('@/views/LayingPage.vue'),
+        meta: {
+          title: 'Инструкция по укладке',
         },
       },
     ],
