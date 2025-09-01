@@ -49,6 +49,22 @@ export const routes: Array<RouteRecordRaw> = [
           title: 'Инструкция по укладке',
         },
       },
+      {
+        path: '/characteristics',
+        name: 'characteristics',
+        component: () => import('@/views/CharacteristicsPage.vue'),
+        meta: {
+          title: 'Характеристики',
+        },
+      },
+      {
+        path: '/galary',
+        name: 'galary',
+        component: () => import('@/views/GalaryPage.vue'),
+        meta: {
+          title: 'Галерея',
+        },
+      },
     ],
   },
 

@@ -8,7 +8,7 @@
     </Transition>
 
     <!-- FOOTER -->
-    <TheFooter :router-menu="routerMenu" />
+    <TheFooter />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import TheHeader from '@/components/TheHeader.vue'
 const routerMenu: { name: string; to: string }[] = [
   { name: 'Главная', to: '/' },
   { name: 'Продукция', to: '/products' },
+  { name: 'Галерея', to: '/galary' },
   // { name: 'Галерея', to: '/gallery' },
   // { name: 'Где купить', to: '/where-to-buy' },
 ]

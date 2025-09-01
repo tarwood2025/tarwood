@@ -43,7 +43,13 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  routerMenu: any
-}>()
+const routerMenu: { name: string; to: string }[] = [
+  { name: 'Главная', to: '/' },
+  { name: 'Продукция', to: '/products' },
+  { name: 'Галерея', to: '/galary' },
+  { name: 'О компании', to: '/about' },
+  { name: 'Уход', to: '/operation' },
+  { name: 'Укладка', to: '/laying' },
+  { name: 'Характеристики', to: '/characteristics' },
+]
 </script>

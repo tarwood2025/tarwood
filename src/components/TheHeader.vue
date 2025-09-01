@@ -18,7 +18,7 @@
 
           <!-- Выпадающее меню -->
           <ul
-            class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            class="absolute z-20 left-0 mt-2 w-48 bg-white shadow-lg rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
           >
             <li v-for="(item, idx) in infoMenu" :key="idx">
               <router-link :to="item.to" class="block px-4 py-2 hover:bg-gray-100 rounded-lg">
@@ -105,6 +105,7 @@ const infoMenu = [
   { name: 'О компании', to: '/about' },
   { name: 'Уход', to: '/operation' },
   { name: 'Укладка', to: '/laying' },
+  { name: 'Характеристики', to: '/characteristics' },
 ]
 
 const isOpen = ref(false)

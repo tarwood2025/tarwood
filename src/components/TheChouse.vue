@@ -8,7 +8,7 @@
         Мы поможем подобрать оптимальный вариант для вашего проекта и ответим на все вопросы
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <TButton color="white">Смотреть каталог</TButton>
+        <TButton @click="$router.push('/products')" color="white">Смотреть каталог</TButton>
         <TButton color="white">Связаться с нами</TButton>
       </div>
     </div>

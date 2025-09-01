@@ -10,7 +10,7 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-3 mt-6 justify-center md:justify-start">
-          <TButton>Посмотреть каталог</TButton>
+          <TButton @click="$router.push('/products')">Посмотреть каталог</TButton>
           <TButton color="white">Получить консультацию</TButton>
         </div>
       </div>
