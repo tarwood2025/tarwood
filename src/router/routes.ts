@@ -65,6 +65,14 @@ export const routes: Array<RouteRecordRaw> = [
           title: 'Галерея',
         },
       },
+      {
+        path: '/contacts',
+        name: 'contacts',
+        component: () => import('@/views/ContactsPage.vue'),
+        meta: {
+          title: 'Контакты',
+        },
+      },
     ],
   },
 

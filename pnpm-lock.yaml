@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.11
         version: 4.1.11(vite@7.1.2(@types/node@22.17.1)(jiti@2.5.1)(lightningcss@1.30.1))
+      '@yandex/ymaps3-types':
+        specifier: ^1.0.17422578
+        version: 1.0.17422578(@vue/runtime-core@3.5.18)
       pinia:
         specifier: ^3.0.3
         version: 3.0.3(typescript@5.8.3)(vue@3.5.18(typescript@5.8.3))
@@ -23,6 +26,9 @@ importers:
       vue-router:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.18(typescript@5.8.3))
+      vue-yandex-maps:
+        specifier: ^2.2.2
+        version: 2.2.2(@yandex/ymaps3-context-menu@0.0.2)(@yandex/ymaps3-default-ui-theme@0.0.19)(@yandex/ymaps3-drawer-control@0.0.2)(@yandex/ymaps3-minimap@0.0.4)(@yandex/ymaps3-resizer@0.0.2)(@yandex/ymaps3-signpost@0.0.2)(@yandex/ymaps3-spinner@0.0.2)(@yandex/ymaps3-types@1.0.17422578(@vue/runtime-core@3.5.18))(vue@3.5.18(typescript@5.8.3))
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.2
@@ -692,6 +698,41 @@ packages:
       vue:
         optional: true
 
+  '@yandex/ymaps3-context-menu@0.0.2':
+    resolution: {integrity: sha512-i0/ALd6pzVssvzczgcRJH5SzL3dnehHRwFAwrRdVj/xdb5c5C6VTolr+HhBBh0BCbS+p+fOEVoAEIAibynyYfQ==}
+
+  '@yandex/ymaps3-default-ui-theme@0.0.19':
+    resolution: {integrity: sha512-kjrlmrUQ9OnULbSnZ+AkwHeN/QG3B6rEUcA8MXs3ai33inyWU3n+ivsW2Ezbcw5e6+QiG4h5wg1c32qZJWI+ig==}
+
+  '@yandex/ymaps3-drawer-control@0.0.2':
+    resolution: {integrity: sha512-gy4MqNljXQdsqPznBb+Jk//4wTI1LdlamJE3MG9m3tHnVOM/9kH2xUQc+wsrIG1hPUqj10VrTw81A/oGA8Rjbw==}
+
+  '@yandex/ymaps3-minimap@0.0.4':
+    resolution: {integrity: sha512-Mw8WKNxVJZHPy9ZZPvU/3HscHXEfJKkcoRJSAAFysDfihpcdPRR8mc/zflFjQmg9VaaLLD9aSR7yT5O+EVpwZA==}
+
+  '@yandex/ymaps3-resizer@0.0.2':
+    resolution: {integrity: sha512-1D/b8+GqrZOOXjuPYnffNBdpAtrUyfJPhPY6AaaJKdaF87Rx1JJKYARktblEIPjYjie9ksj3gnVKVh9OLPVLsQ==}
+
+  '@yandex/ymaps3-signpost@0.0.2':
+    resolution: {integrity: sha512-p7UYkzrcfKloAPqcvK+rd2WHr1kW5ENLlwTtmY7B+bcjye32HALCmBn53VLnuUAl9xW6s6M1RGdJ8gdmubR5aQ==}
+
+  '@yandex/ymaps3-spinner@0.0.2':
+    resolution: {integrity: sha512-nDze/MfYAn7JIbBOzYNBhrEhgF1RHnymJGT7W+y+uVKCTmaUaGXOMeZF2Z8+GuR3BvszZ73fWFE3IfGySOSw+g==}
+
+  '@yandex/ymaps3-types@1.0.17422578':
+    resolution: {integrity: sha512-SN3T0Sy2WKUWYbPpXs0sFlrlK8sVsqrQqSgAHTjES8yPMRQmeXa1+g1YJcfwXqOekar9iPdTiA1L8DLXNB1p7g==}
+    peerDependencies:
+      '@types/react': 16-19
+      '@types/react-dom': 16-19
+      '@vue/runtime-core': '3'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      '@vue/runtime-core':
+        optional: true
+
   alien-signals@2.0.6:
     resolution: {integrity: sha512-P3TxJSe31bUHBiblg59oU1PpaWPtmxF9GhJ/cB7OkgJ0qN/ifFSKUI25/v8ZhsT+lIG6ac8DpTOplXxORX6F3Q==}
 
@@ -1130,6 +1171,9 @@ packages:
     resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
     engines: {node: '>=0.10.0'}
 
+  spin.js@4.1.2:
+    resolution: {integrity: sha512-ua/yEpxEwyEUWs57tMQYdik/KJ12sQRyMXjSlK/Ai927aEUDVY3FXUi4ml4VvlLCTQNIjC6tHyjSLBrJzFAqMA==}
+
   strip-final-newline@4.0.0:
     resolution: {integrity: sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==}
     engines: {node: '>=18'}
@@ -1263,6 +1307,27 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
+
+  vue-yandex-maps@2.2.2:
+    resolution: {integrity: sha512-PXGn3tz+vEy5TVBNoKpfxxKqq/Dn6sB+KGqmmVhqTtcSXnqdG4gouCIk6bhoxshjC14qSj6ue4WIAOmqN6j3tw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@vue/composition-api': '>=1'
+      '@yandex/ymaps3-context-menu': '>=0.0.2'
+      '@yandex/ymaps3-default-ui-theme': '>=0.0.19'
+      '@yandex/ymaps3-drawer-control': '>=0.0.2'
+      '@yandex/ymaps3-minimap': '>=0.0.4'
+      '@yandex/ymaps3-resizer': '>=0.0.2'
+      '@yandex/ymaps3-signpost': '>=0.0.2'
+      '@yandex/ymaps3-spinner': '>=0.0.2'
+      '@yandex/ymaps3-types': '>=1.0.17422578'
+      nuxt: '>=2.16 || >=3'
+      vue: '>=2.7 || >=3.3'
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      nuxt:
+        optional: true
 
   vue@3.5.18:
     resolution: {integrity: sha512-7W4Y4ZbMiQ3SEo+m9lnoNpV9xG7QVMLa+/0RFwwiAVkeYoyGXqWE85jabU4pllJNUzqfLShJ5YLptewhCWUgNA==}
@@ -1908,6 +1973,26 @@ snapshots:
       typescript: 5.8.3
       vue: 3.5.18(typescript@5.8.3)
 
+  '@yandex/ymaps3-context-menu@0.0.2': {}
+
+  '@yandex/ymaps3-default-ui-theme@0.0.19': {}
+
+  '@yandex/ymaps3-drawer-control@0.0.2': {}
+
+  '@yandex/ymaps3-minimap@0.0.4': {}
+
+  '@yandex/ymaps3-resizer@0.0.2': {}
+
+  '@yandex/ymaps3-signpost@0.0.2': {}
+
+  '@yandex/ymaps3-spinner@0.0.2':
+    dependencies:
+      spin.js: 4.1.2
+
+  '@yandex/ymaps3-types@1.0.17422578(@vue/runtime-core@3.5.18)':
+    optionalDependencies:
+      '@vue/runtime-core': 3.5.18
+
   alien-signals@2.0.6: {}
 
   ansi-styles@6.2.1: {}
@@ -2279,6 +2364,8 @@ snapshots:
 
   speakingurl@14.0.1: {}
 
+  spin.js@4.1.2: {}
+
   strip-final-newline@4.0.0: {}
 
   superjson@2.2.2:
@@ -2403,6 +2490,18 @@ snapshots:
       '@volar/typescript': 2.4.22
       '@vue/language-core': 3.0.5(typescript@5.8.3)
       typescript: 5.8.3
+
+  vue-yandex-maps@2.2.2(@yandex/ymaps3-context-menu@0.0.2)(@yandex/ymaps3-default-ui-theme@0.0.19)(@yandex/ymaps3-drawer-control@0.0.2)(@yandex/ymaps3-minimap@0.0.4)(@yandex/ymaps3-resizer@0.0.2)(@yandex/ymaps3-signpost@0.0.2)(@yandex/ymaps3-spinner@0.0.2)(@yandex/ymaps3-types@1.0.17422578(@vue/runtime-core@3.5.18))(vue@3.5.18(typescript@5.8.3)):
+    dependencies:
+      '@yandex/ymaps3-context-menu': 0.0.2
+      '@yandex/ymaps3-default-ui-theme': 0.0.19
+      '@yandex/ymaps3-drawer-control': 0.0.2
+      '@yandex/ymaps3-minimap': 0.0.4
+      '@yandex/ymaps3-resizer': 0.0.2
+      '@yandex/ymaps3-signpost': 0.0.2
+      '@yandex/ymaps3-spinner': 0.0.2
+      '@yandex/ymaps3-types': 1.0.17422578(@vue/runtime-core@3.5.18)
+      vue: 3.5.18(typescript@5.8.3)
 
   vue@3.5.18(typescript@5.8.3):
     dependencies:

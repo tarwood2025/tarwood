@@ -3,6 +3,9 @@
     <div
       class="relative max-h-[70vh] w-full rounded-lg overflow-hidden mb-4 cursor-pointer"
       @click="openModal(currentImage)"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
     >
       <img
         :src="currentImage.src"
@@ -11,17 +14,26 @@
       />
     </div>
 
-    <div class="text-center text-gray-500 mb-4">← Навигация клавишами →</div>
+    <div class="text-center text-gray-500 mb-4">← Навигация клавишами и свайпом →</div>
 
-    <div class="flex flex-wrap justify-center gap-2">
+    <div
+      ref="thumbnailContainer"
+      class="flex gap-2 w-full overflow-x-auto pb-2"
+      style="scrollbar-width: none; -ms-overflow-style: none"
+    >
       <img
         v-for="(image, index) in images"
         :key="index"
+        :ref="
+          (el) => {
+            if (el) thumbnailRefs[index] = el
+          }
+        "
         :src="image.thumb"
         :alt="image.alt"
         @click="selectImage(index)"
         :class="[
-          'w-20 h-20 object-cover rounded-md cursor-pointer border-2 transition-transform duration-200',
+          'w-20 h-20 object-cover rounded-md cursor-pointer border-2 transition-transform duration-200 flex-shrink-0',
           currentIndex === index
             ? 'border-blue-500 scale-105'
             : 'border-transparent hover:scale-105',
@@ -52,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import g1 from '../assets/images/g1.jpg'
 import g2 from '../assets/images/g2.jpg'
 import g3 from '../assets/images/g3.jpg'
@@ -80,10 +92,61 @@ const currentImage = ref(images[0])
 const isModalOpen = ref(false)
 const modalImage = ref<any>({})
 
+// --- НОВЫЙ КОД ДЛЯ ПРОКРУТКИ И СВАЙПА ---
+
+// Refs для DOM-элементов
+const thumbnailContainer = ref<HTMLElement | null>(null)
+const thumbnailRefs = ref<HTMLElement[]>([])
+
+// Refs для отслеживания касаний
+const touchStartX = ref(0)
+const touchEndX = ref(0)
+
 const selectImage = (index: number) => {
   currentIndex.value = index
   currentImage.value = images[index]
 }
+
+// Обработчики свайпа
+const handleTouchStart = (event: TouchEvent) => {
+  touchStartX.value = event.touches[0].clientX
+  touchEndX.value = 0
+}
+
+const handleTouchMove = (event: TouchEvent) => {
+  touchEndX.value = event.touches[0].clientX
+}
+
+const handleTouchEnd = () => {
+  if (touchEndX.value === 0) return // Это был клик, а не свайп
+
+  const diff = touchStartX.value - touchEndX.value
+  const threshold = 50 // Минимальная дистанция для свайпа
+
+  if (diff > threshold) {
+    // Свайп влево -> следующее изображение
+    const newIndex = (currentIndex.value + 1) % images.length
+    selectImage(newIndex)
+  } else if (diff < -threshold) {
+    // Свайп вправо -> предыдущее изображение
+    const newIndex = (currentIndex.value - 1 + images.length) % images.length
+    selectImage(newIndex)
+  }
+}
+
+// Отслеживаем изменение currentIndex и прокручиваем миниатюру в центр
+watch(currentIndex, (newIndex) => {
+  const activeThumbnail = thumbnailRefs.value[newIndex]
+  if (activeThumbnail) {
+    activeThumbnail.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block: 'nearest',
+    })
+  }
+})
+
+// --- КОНЕЦ НОВОГО КОДА ---
 
 const openModal = (image: { src: string; alt: string; thumb: string }) => {
   modalImage.value = image
@@ -119,3 +182,10 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyDown)
 })
 </script>
+
+<style scoped>
+/* Скрываем полосу прокрутки для Webkit-браузеров (Chrome, Safari) */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+</style>
