@@ -79,7 +79,7 @@ const headers = {
 
 <template>
   <div class="p-4 sm:p-6 lg:p-8 font-sans">
-    <div class="overflow-x-auto rounded-lg shadow-lg">
+    <div class="overflow-x-auto rounded-lg md:shadow-lg">
       <table class="min-w-full">
         <thead class="bg-tar-green hidden md:table-header-group">
           <tr>

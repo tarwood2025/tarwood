@@ -26,6 +26,14 @@ export const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: '/product/:id',
+        name: 'porductCard',
+        component: () => import('@/views/ProductPage.vue'),
+        meta: {
+          title: 'Информация о товаре',
+        },
+      },
+      {
         path: '/about',
         name: 'about',
         component: () => import('@/views/AboutPage.vue'),

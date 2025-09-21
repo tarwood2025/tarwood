@@ -9,7 +9,7 @@
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <TButton @click="$router.push('/products')" color="white">Смотреть каталог</TButton>
-        <TButton color="white">Связаться с нами</TButton>
+        <TButton @click="$router.push('/contacts')" color="white">Связаться с нами</TButton>
       </div>
     </div>
   </section>

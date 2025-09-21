@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#4A4A4A] text-white py-10 px-4">
+  <footer class="bg-[#4A4A4A] text-white py-5 px-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
       <div class="sm:col-span-2 max-w-lg">
         <h2 class="mb-2 font-semibold text-3xl md:text-4xl">Tarwood</h2>
@@ -22,13 +22,11 @@
       <div>
         <h3 class="font-semibold text-lg mb-1.5">Контакты</h3>
         <ul class="space-y-1 text-sm sm:text-base">
-          <li><a href="#"> 📞 +7 (495) 661-66-86</a></li>
-          <li><a href="#"> ✉️ info@тарвуд.рф</a></li>
+          <li>📞 +7 (495) 661-66-86</li>
+          <li>✉️ info@тарвуд.рф</li>
           <li>
-            <a href="#">
-              📍 Москва, Волгоградский <br />
-              пр-т, д. 32, корп. 25, офис 14
-            </a>
+            📍 Москва, Волгоградский <br />
+            пр-т, д. 32, корп. 25, офис 14
           </li>
         </ul>
       </div>

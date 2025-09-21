@@ -2,7 +2,12 @@
   <header class="flex justify-between items-center py-2 mx-auto w-full max-w-7xl">
     <!-- Лого -->
     <div>
-      <img src="../assets/images/tarwood-logo.png" alt="logo" class="w-28 sm:w-36" />
+      <img
+        @click="$router.push('/')"
+        src="../assets/images/tarwood-logo.png"
+        alt="logo"
+        class="w-28 sm:w-36 cursor-pointer"
+      />
     </div>
 
     <!-- Десктопное меню -->
@@ -31,8 +36,8 @@
     </nav>
 
     <!-- Кнопка (десктоп) -->
-    <div class="hidden md:block">
-      <TButton>Связаться с нами</TButton>
+    <div class="hidden md:block px-4">
+      <TButton @click="$router.push('/contacts')">Связаться с нами</TButton>
     </div>
 
     <!-- Мобильный бургер -->

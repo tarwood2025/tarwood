@@ -35,6 +35,7 @@
             v-for="(item, idx) in filteredItems"
             :key="idx"
             class="flex flex-col items-center rounded-lg overflow-hidden hover:shadow-lg transition-all py-2 cursor-pointer"
+            @click="openCard(item)"
           >
             <div
               class="w-full max-w-[165px] h-[165px] flex items-center justify-center bg-gray-100"
@@ -72,27 +73,70 @@ import img1 from '@/assets/images/1.jpg'
 import img2 from '@/assets/images/2.jpg'
 import img3 from '@/assets/images/3.jpg'
 import img4 from '@/assets/images/4.jpg'
+import router from '@/router'
 
 const filters = ['Все', 'Палубная доска', 'Венгерская елка', 'Французская елка']
 const activeFilter = ref('Все')
 
+const items2 = ref([
+  { title: 'Балтик', img: img1, type: 'Палубная доска', id: 1 },
+  { title: 'Барни', img: img2, type: 'Палубная доска', id: 2 },
+  { title: 'Бронза', img: img3, type: 'Венгерская елка', id: 3 },
+  { title: 'Венге', img: img4, type: 'Французская елка', id: 4 },
+  { title: 'Береза', img: null, type: 'Французская елка', id: 5 },
+  { title: 'Дуб', img: null, type: 'Палубная доска', id: 6 },
+  { title: 'Иволга', img: null, type: 'Венгерская елка', id: 7 },
+  { title: 'Клён', img: null, type: 'Французская елка', id: 8 },
+  { title: 'Тополь', img: null, type: 'Французская елка', id: 9 },
+  { title: 'Ель', img: null, type: 'Палубная доска', id: 10 },
+  { title: 'Пальма', img: null, type: 'Венгерская елка', id: 11 },
+  { title: 'Яблоня', img: null, type: 'Французская елка', id: 12 },
+])
+
 const items = ref([
-  { title: 'Балтик', img: img1, type: 'Палубная доска' },
-  { title: 'Барни', img: img2, type: 'Палубная доска' },
-  { title: 'Бронза', img: img3, type: 'Венгерская елка' },
-  { title: 'Венге', img: img4, type: 'Французская елка' },
-  { title: 'Береза', img: null, type: 'Французская елка' },
-  { title: 'Дуб', img: null, type: 'Палубная доска' },
-  { title: 'Иволга', img: null, type: 'Венгерская елка' },
-  { title: 'Клён', img: null, type: 'Французская елка' },
-  { title: 'Тополь', img: null, type: 'Французская елка' },
-  { title: 'Ель', img: null, type: 'Палубная доска' },
-  { title: 'Пальма', img: null, type: 'Венгерская елка' },
-  { title: 'Яблоня', img: null, type: 'Французская елка' },
+  {
+    title: 'Дуб Балтик',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/1_palub_Baltic.jpg',
+    type: 'Палубная доска',
+    id: 1,
+  },
+  {
+    title: 'Дуб Барни',
+    img: 'https://xn--80aeg0cij.xn--p1ai/jansenflru/tarwood-v2/public_html/paluba/2_palub_Barni_s.jpg',
+    type: 'Палубная доска',
+    id: 2,
+  },
+  { title: 'Дуб Бронза', img: null, type: 'Палубная доска', id: 3 },
+  { title: 'Дуб Бурбон', img: null, type: 'Палубная доска', id: 4 },
+  { title: 'Дуб Корица', img: null, type: 'Палубная доска', id: 5 },
+  { title: 'Дуб Колониал', img: null, type: 'Палубная доска', id: 6 },
+  { title: 'Дуб Медный', img: null, type: 'Палубная доска', id: 7 },
+  { title: 'Дуб Корсика', img: null, type: 'Палубная доска', id: 8 },
+  { title: 'Дуб Серый винтаж', img: null, type: 'Палубная доска', id: 9 },
+  { title: 'Дуб Слоновая кость', img: null, type: 'Палубная доска', id: 10 },
+  { title: 'Дуб Миндаль', img: null, type: 'Палубная доска', id: 11 },
+  { title: 'Дуб Меркурий', img: null, type: 'Палубная доска', id: 12 },
+  { title: 'Дуб Старый', img: null, type: 'Палубная доска', id: 13 },
+  { title: 'Дуб Опера', img: null, type: 'Палубная доска', id: 14 },
+  { title: 'Дуб Оригинальный', img: null, type: 'Палубная доска', id: 15 },
+  { title: 'Дуб Пепел', img: null, type: 'Палубная доска', id: 16 },
+  { title: 'Дуб Жемчуг', img: null, type: 'Палубная доска', id: 17 },
+  { title: 'Дуб Прованс', img: null, type: 'Палубная доска', id: 18 },
+  { title: 'Дуб Сатин', img: null, type: 'Палубная доска', id: 19 },
+  { title: 'Дуб Шёлк', img: null, type: 'Палубная доска', id: 20 },
+  { title: 'Дуб Копченый', img: null, type: 'Палубная доска', id: 21 },
+  { title: 'Дуб Дымчатый', img: null, type: 'Палубная доска', id: 22 },
+  { title: 'Дуб Нежный песок', img: null, type: 'Палубная доска', id: 23 },
+  { title: 'Дуб Орех', img: null, type: 'Палубная доска', id: 24 },
 ])
 
 const filteredItems = computed(() => {
   if (activeFilter.value === 'Все') return items.value
   return items.value.filter((i) => i.type === activeFilter.value)
 })
+
+function openCard(item) {
+  router.push({ name: 'porductCard', params: { id: item.id } })
+  console.log(item)
+}
 </script>

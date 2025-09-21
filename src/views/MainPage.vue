@@ -1,16 +1,9 @@
 <template>
   <main>
-    <!-- HERO -->
     <TheTitle />
-    <!-- Преимущества -->
     <TheAdvantages :info-list="infoList" />
-    <!-- Двухслойная конструкция -->
     <TheDoubleConstruction :tehno-list="tehnoList" />
-
-    <!-- Сертификаты -->
     <TheSertificats :cert-list="certList" />
-
-    <!-- CTA -->
     <TheChouse />
   </main>
 </template>

@@ -83,7 +83,7 @@
             :key="id"
             class="flex flex-col items-center gap-4 mt-8 shadow-md rounded-2xl py-2"
           >
-            <div :class="`rounded-full max-w-max p-4 bg-${item.color}`">
+            <div :class="`rounded-full max-w-max p-4 ${item.color}`">
               <img :src="item.icon" alt="cloud" />
             </div>
             <h3>{{ item.title }}</h3>
@@ -200,19 +200,19 @@ const menu3 = [
     title: 'Влажность',
     temp: '40-60%',
     icon: cloud,
-    color: '[#3A6757]',
+    color: 'bg-[#3A6757]',
   },
   {
     title: 'Температура',
     temp: '18-22°C',
     icon: cloud,
-    color: '[#6A8C5D]',
+    color: 'bg-[#6A8C5D]',
   },
   {
     title: 'Теплый пол',
     temp: '≤27°C',
     icon: lightning,
-    color: '[#ca7a1f]',
+    color: 'bg-[#fae56d]',
   },
 ]
 </script>
