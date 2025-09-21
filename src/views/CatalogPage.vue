@@ -19,7 +19,7 @@
             :key="filter"
             @click="activeFilter = filter"
             :class="[
-              'px-3 sm:px-4 py-1.5 rounded-lg border text-sm sm:text-base transition',
+              'px-3 sm:px-4 py-1.5 rounded-lg border text-sm sm:text-base transition cursor-pointer',
               activeFilter === filter
                 ? 'bg-tar-green text-white border-tar-green hover:bg-tar-green-hover'
                 : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
@@ -32,8 +32,8 @@
         <!-- Сетка товаров -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
           <div
-            v-for="(item, idx) in filteredItems"
-            :key="idx"
+            v-for="item in filteredItems"
+            :key="item.id"
             class="flex flex-col items-center rounded-lg overflow-hidden hover:shadow-lg transition-all py-2 cursor-pointer"
             @click="openCard(item)"
           >
@@ -43,13 +43,14 @@
               <img
                 v-if="item.img"
                 :src="item.img"
-                alt="img"
+                :alt="item.title"
                 class="object-cover w-full h-full rounded-xl"
               />
               <TheUnknownImg v-else />
             </div>
             <div class="text-center py-2 text-sm sm:text-base">
-              {{ item.title }}
+              {{ item.title }} <br />
+              ({{ item.type }})
             </div>
           </div>
         </div>
@@ -68,66 +69,445 @@
 <script setup>
 import TheChouse from '@/components/TheChouse.vue'
 import TheUnknownImg from '@/ui/TheUnknownImg.vue'
-import { ref, computed } from 'vue'
-import img1 from '@/assets/images/1.jpg'
-import img2 from '@/assets/images/2.jpg'
-import img3 from '@/assets/images/3.jpg'
-import img4 from '@/assets/images/4.jpg'
+import { ref, computed, TransitionGroup } from 'vue'
 import router from '@/router'
 
 const filters = ['Все', 'Палубная доска', 'Венгерская елка', 'Французская елка']
 const activeFilter = ref('Все')
 
-const items2 = ref([
-  { title: 'Балтик', img: img1, type: 'Палубная доска', id: 1 },
-  { title: 'Барни', img: img2, type: 'Палубная доска', id: 2 },
-  { title: 'Бронза', img: img3, type: 'Венгерская елка', id: 3 },
-  { title: 'Венге', img: img4, type: 'Французская елка', id: 4 },
-  { title: 'Береза', img: null, type: 'Французская елка', id: 5 },
-  { title: 'Дуб', img: null, type: 'Палубная доска', id: 6 },
-  { title: 'Иволга', img: null, type: 'Венгерская елка', id: 7 },
-  { title: 'Клён', img: null, type: 'Французская елка', id: 8 },
-  { title: 'Тополь', img: null, type: 'Французская елка', id: 9 },
-  { title: 'Ель', img: null, type: 'Палубная доска', id: 10 },
-  { title: 'Пальма', img: null, type: 'Венгерская елка', id: 11 },
-  { title: 'Яблоня', img: null, type: 'Французская елка', id: 12 },
-])
-
 const items = ref([
   {
-    title: 'Дуб Балтик',
-    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/1_palub_Baltic.jpg',
+    title: 'Балтик',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/1_palub_Baltic_s.jpg',
     type: 'Палубная доска',
     id: 1,
   },
   {
-    title: 'Дуб Барни',
-    img: 'https://xn--80aeg0cij.xn--p1ai/jansenflru/tarwood-v2/public_html/paluba/2_palub_Barni_s.jpg',
+    title: 'Барни',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/2_palub_Barni_s.jpg',
     type: 'Палубная доска',
     id: 2,
   },
-  { title: 'Дуб Бронза', img: null, type: 'Палубная доска', id: 3 },
-  { title: 'Дуб Бурбон', img: null, type: 'Палубная доска', id: 4 },
-  { title: 'Дуб Корица', img: null, type: 'Палубная доска', id: 5 },
-  { title: 'Дуб Колониал', img: null, type: 'Палубная доска', id: 6 },
-  { title: 'Дуб Медный', img: null, type: 'Палубная доска', id: 7 },
-  { title: 'Дуб Корсика', img: null, type: 'Палубная доска', id: 8 },
-  { title: 'Дуб Серый винтаж', img: null, type: 'Палубная доска', id: 9 },
-  { title: 'Дуб Слоновая кость', img: null, type: 'Палубная доска', id: 10 },
-  { title: 'Дуб Миндаль', img: null, type: 'Палубная доска', id: 11 },
-  { title: 'Дуб Меркурий', img: null, type: 'Палубная доска', id: 12 },
-  { title: 'Дуб Старый', img: null, type: 'Палубная доска', id: 13 },
-  { title: 'Дуб Опера', img: null, type: 'Палубная доска', id: 14 },
-  { title: 'Дуб Оригинальный', img: null, type: 'Палубная доска', id: 15 },
-  { title: 'Дуб Пепел', img: null, type: 'Палубная доска', id: 16 },
-  { title: 'Дуб Жемчуг', img: null, type: 'Палубная доска', id: 17 },
-  { title: 'Дуб Прованс', img: null, type: 'Палубная доска', id: 18 },
-  { title: 'Дуб Сатин', img: null, type: 'Палубная доска', id: 19 },
-  { title: 'Дуб Шёлк', img: null, type: 'Палубная доска', id: 20 },
-  { title: 'Дуб Копченый', img: null, type: 'Палубная доска', id: 21 },
-  { title: 'Дуб Дымчатый', img: null, type: 'Палубная доска', id: 22 },
-  { title: 'Дуб Нежный песок', img: null, type: 'Палубная доска', id: 23 },
-  { title: 'Дуб Орех', img: null, type: 'Палубная доска', id: 24 },
+  {
+    title: 'Бронза',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/3_palub_Bronze_s.jpg',
+    type: 'Палубная доска',
+    id: 3,
+  },
+  {
+    title: 'Бурбон',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/4_palub_Burbon_s.jpg',
+    type: 'Палубная доска',
+    id: 4,
+  },
+  {
+    title: 'Корица',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/5_palub_Canela_s.jpg',
+    type: 'Палубная доска',
+    id: 5,
+  },
+  {
+    title: 'Колониал',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/6_palub_Colonial_s.jpg',
+    type: 'Палубная доска',
+    id: 6,
+  },
+  {
+    title: 'Медный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/7_palub_Copper_s.jpg',
+    type: 'Палубная доска',
+    id: 7,
+  },
+  {
+    title: 'Корсика',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/8_palub_Corsica_s.jpg',
+    type: 'Палубная доска',
+    id: 8,
+  },
+  {
+    title: 'Серый винтаж',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/9_palub_Grey_Vintage_s.jpg',
+    type: 'Палубная доска',
+    id: 9,
+  },
+  {
+    title: 'Слоновая кость',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/10_palub_Ivory_s.jpg',
+    type: 'Палубная доска',
+    id: 10,
+  },
+  {
+    title: 'Миндаль',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/11_palub_Mendal_s.jpg',
+    type: 'Палубная доска',
+    id: 11,
+  },
+  {
+    title: 'Меркурий',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/12_palub_Mercury_s.jpg',
+    type: 'Палубная доска',
+    id: 12,
+  },
+  {
+    title: 'Старый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/13_palub_Old_s.jpg',
+    type: 'Палубная доска',
+    id: 13,
+  },
+  {
+    title: 'Опера',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/14_palub_Opera_s.jpg',
+    type: 'Палубная доска',
+    id: 14,
+  },
+  {
+    title: 'Оригинальный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/15_palub_Origial_s.jpg',
+    type: 'Палубная доска',
+    id: 15,
+  },
+  {
+    title: 'Пепел',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/16_palub_Pepel_s.jpg',
+    type: 'Палубная доска',
+    id: 16,
+  },
+  {
+    title: 'Жемчуг',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/17_palub_Perl_s.jpg',
+    type: 'Палубная доска',
+    id: 17,
+  },
+  {
+    title: 'Прованс',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/18_palub_Provence_s.jpg',
+    type: 'Палубная доска',
+    id: 18,
+  },
+  {
+    title: 'Сатин',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/19_palub_Satin_s.jpg',
+    type: 'Палубная доска',
+    id: 19,
+  },
+  {
+    title: 'Шёлк',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/20_palub_Silk_s.jpg',
+    type: 'Палубная доска',
+    id: 20,
+  },
+  {
+    title: 'Копченый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/21_palub_Smoked_s.jpg',
+    type: 'Палубная доска',
+    id: 21,
+  },
+  {
+    title: 'Дымчатый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/22_palub_Smoky_s.jpg',
+    type: 'Палубная доска',
+    id: 22,
+  },
+  {
+    title: 'Нежный песок',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/23_palub_Soft_Sand_s.jpg',
+    type: 'Палубная доска',
+    id: 23,
+  },
+  {
+    title: 'Орех',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/paluba/24_palub_Walnut_s.jpg',
+    type: 'Палубная доска',
+    id: 24,
+  },
+  {
+    title: 'Балтик',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/1_vengr_Baltic_s.jpg',
+    type: 'Венгерская елка',
+    id: 25,
+  },
+  {
+    title: 'Барни',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/2_vengr_Barni_s.jpg',
+    type: 'Венгерская елка',
+    id: 26,
+  },
+  {
+    title: 'Бронза',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/3_vengr_Bronze_s.jpg',
+    type: 'Венгерская елка',
+    id: 27,
+  },
+  {
+    title: 'Бурбон',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/4_vengr_Burbon_s.jpg',
+    type: 'Венгерская елка',
+    id: 28,
+  },
+  {
+    title: 'Корица',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/5_vengr_Canela_s.jpg',
+    type: 'Венгерская елка',
+    id: 29,
+  },
+  {
+    title: 'Колониал',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/6_vengr_Colonial_s.jpg',
+    type: 'Венгерская елка',
+    id: 30,
+  },
+  {
+    title: 'Медный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/7_vengr_Coppe_s.jpg',
+    type: 'Венгерская елка',
+    id: 31,
+  },
+  {
+    title: 'Корсика',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/8_vengr_Corsica_s.jpg',
+    type: 'Венгерская елка',
+    id: 32,
+  },
+  {
+    title: 'Серый винтаж',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/9_vengr_Grey_Vintage_s.jpg',
+    type: 'Венгерская елка',
+    id: 33,
+  },
+  {
+    title: 'Слоновая кость',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/10_vengr_Ivory_s.jpg',
+    type: 'Венгерская елка',
+    id: 34,
+  },
+  {
+    title: 'Миндаль',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/11_vengr_Mendal_s.jpg',
+    type: 'Венгерская елка',
+    id: 35,
+  },
+  {
+    title: 'Меркурий',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/12_vengr_Mercury_s.jpg',
+    type: 'Венгерская елка',
+    id: 36,
+  },
+  {
+    title: 'Старый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/13_vengr_Old_s.jpg',
+    type: 'Венгерская елка',
+    id: 37,
+  },
+  {
+    title: 'Опера',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/14_vengr_Opera_s.jpg',
+    type: 'Венгерская елка',
+    id: 38,
+  },
+  {
+    title: 'Оригинальный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/15_vengr_Origial_s.jpg',
+    type: 'Венгерская елка',
+    id: 39,
+  },
+  {
+    title: 'Пепел',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/16_vengr_Pepel_s.jpg',
+    type: 'Венгерская елка',
+    id: 40,
+  },
+  {
+    title: 'Жемчуг',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/17_vengr_Perl_s.jpg',
+    type: 'Венгерская елка',
+    id: 41,
+  },
+  {
+    title: 'Прованс',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/18_vengr_Provence_s.jpg',
+    type: 'Венгерская елка',
+    id: 42,
+  },
+  {
+    title: 'Сатин',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/19_vengr_Satin_s.jpg',
+    type: 'Венгерская елка',
+    id: 43,
+  },
+  {
+    title: 'Шёлк',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/20_vengr_Silk_s.jpg',
+    type: 'Венгерская елка',
+    id: 44,
+  },
+  {
+    title: 'Копченый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/21_vengr_Smoked_s.jpg',
+    type: 'Венгерская елка',
+    id: 45,
+  },
+  {
+    title: 'Дымчатый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/22_vengr_Smoky_s.jpg',
+    type: 'Венгерская елка',
+    id: 46,
+  },
+  {
+    title: 'Нежный песок',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/23_vengr_Soft_Sand_s.jpg',
+    type: 'Венгерская елка',
+    id: 47,
+  },
+  {
+    title: 'Орех',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/vengr-elka/24_vengr_Walnut_s.jpg',
+    type: 'Венгерская елка',
+    id: 48,
+  },
+  {
+    title: 'Балтик',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/1_fr_Baltic_s.jpg',
+    type: 'Французская елка',
+    id: 49,
+  },
+  {
+    title: 'Барни',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/2_fr_Barni_s.jpg',
+    type: 'Французская елка',
+    id: 50,
+  },
+  {
+    title: 'Бронза',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/3_fr_Bronze_s.jpg',
+    type: 'Французская елка',
+    id: 51,
+  },
+  {
+    title: 'Бурбон',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/4_fr_Burbon_s.jpg',
+    type: 'Французская елка',
+    id: 52,
+  },
+  {
+    title: 'Корица',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/5_fr_Canela_s.jpg',
+    type: 'Французская елка',
+    id: 53,
+  },
+  {
+    title: 'Колониал',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/6_fr_Colonial_s.jpg',
+    type: 'Французская елка',
+    id: 54,
+  },
+  {
+    title: 'Медный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/7_fr_Copper_s.jpg',
+    type: 'Французская елка',
+    id: 55,
+  },
+  {
+    title: 'Корсика',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/8_fr_Corsica_s.jpg',
+    type: 'Французская елка',
+    id: 56,
+  },
+  {
+    title: 'Серый винтаж',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/9_fr_Grey_Vintage_s.jpg',
+    type: 'Французская елка',
+    id: 57,
+  },
+  {
+    title: 'Слоновая кость',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/10_fr_Ivory_s.jpg',
+    type: 'Французская елка',
+    id: 58,
+  },
+  {
+    title: 'Миндаль',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/11_fr_Mendal_s.jpg',
+    type: 'Французская елка',
+    id: 59,
+  },
+  {
+    title: 'Меркурий',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/12_fr_Mercury_s.jpg',
+    type: 'Французская елка',
+    id: 60,
+  },
+  {
+    title: 'Старый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/13_fr_Old_s.jpg',
+    type: 'Французская елка',
+    id: 61,
+  },
+  {
+    title: 'Опера',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/14_fr_Opera_s.jpg',
+    type: 'Французская елка',
+    id: 62,
+  },
+  {
+    title: 'Оригинальный',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/15_fr_Origial_s.jpg',
+    type: 'Французская елка',
+    id: 63,
+  },
+  {
+    title: 'Пепел',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/16_fr_Pepel_s.jpg',
+    type: 'Французская елка',
+    id: 64,
+  },
+  {
+    title: 'Жемчуг',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/17_fr_Perl_s.jpg',
+    type: 'Французская елка',
+    id: 65,
+  },
+  {
+    title: 'Прованс',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/18_fr_Provence_s.jpg',
+    type: 'Французская елка',
+    id: 66,
+  },
+  {
+    title: 'Сатин',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/19_fr_Satin_s.jpg',
+    type: 'Французская елка',
+    id: 67,
+  },
+  {
+    title: 'Шёлк',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/20_fr_Silk_s.jpg',
+    type: 'Французская елка',
+    id: 68,
+  },
+  {
+    title: 'Копченый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/21_fr_Smoked_s.jpg',
+    type: 'Французская елка',
+    id: 69,
+  },
+  {
+    title: 'Дымчатый',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/22_fr_Smoky_s.jpg',
+    type: 'Французская елка',
+    id: 70,
+  },
+  {
+    title: 'Нежный песок',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/23_fr_Soft_Sand_s.jpg',
+    type: 'Французская елка',
+    id: 71,
+  },
+  {
+    title: 'Орех',
+    img: 'https://xn--80aeg0cij.xn--p1ai/tarwood/new/fr-elka/24_fr_Walnut_s.jpg',
+    type: 'Французская елка',
+    id: 72,
+  },
 ])
 
 const filteredItems = computed(() => {
