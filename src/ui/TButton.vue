@@ -13,7 +13,7 @@ const props = defineProps<{
 
 const colorClass = computed(() => {
   if (props.color === 'white') {
-    return 'bg-white text-tar-green border border-tar-green hover:bg-gray-50'
+    return 'bg-white text-tar-green border border-tar-green hover:bg-gray-200'
   }
   return 'bg-tar-green text-[#F9F6F2] hover:bg-tar-green-hover'
 })

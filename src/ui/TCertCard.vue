@@ -15,15 +15,15 @@
         </p>
       </div>
     </div>
+
     <div class="flex gap-4">
-      <TButton class="w-full flex justify-center items-center gap-2" color="white">
-        <img src="../assets/images/eye-outline.svg" alt="img" />
-        Смотреть
-      </TButton>
-      <TButton class="w-full flex justify-center items-center gap-2" color="green">
-        <img src="../assets/images/download.svg" alt="img" />
-        Скачать
-      </TButton>
+      <!-- Просмотр -->
+      <a :href="info.url" target="_blank" rel="noopener noreferrer" class="w-full">
+        <TButton class="w-full flex justify-center items-center gap-2" color="white">
+          <img src="../assets/images/eye-outline.svg" alt="img" />
+          Смотреть
+        </TButton>
+      </a>
     </div>
   </div>
 </template>
@@ -35,6 +35,14 @@ defineProps<{
   info: {
     title: string
     description: string
+    url: string
   }
 }>()
+
+/**
+ * Вытаскиваем имя файла из url, чтобы скачать корректно
+ */
+function getFileName(url: string) {
+  return url.split('/').pop() || 'certificate.pdf'
+}
 </script>

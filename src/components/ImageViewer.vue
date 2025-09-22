@@ -1,24 +1,65 @@
 <template>
   <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
-    <div
-      class="relative max-h-[70vh] w-full rounded-lg overflow-hidden mb-4 cursor-pointer"
-      @click="openModal(currentImage)"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-    >
+    <div class="relative w-full aspect-video bg-black rounded-lg overflow-hidden mb-4 group">
       <img
+        :key="currentImage.src + '-bg'"
         :src="currentImage.src"
         :alt="currentImage.alt"
-        class="w-full h-full object-cover transition-opacity duration-300"
+        class="absolute inset-0 w-full h-full object-cover filter blur-2xl scale-110 transition-opacity duration-500"
       />
+      <img
+        :key="currentImage.src"
+        :src="currentImage.src"
+        alt=""
+        class="relative z-10 w-full h-full object-contain cursor-pointer transition-opacity duration-500"
+        @click="openModal(currentImage)"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+      />
+
+      <button
+        @click="prevImage"
+        class="absolute cursor-pointer top-1/2 left-4 -translate-y-1/2 z-20 bg-black/20 bg-opacity-40 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-opacity-60"
+        aria-label="Предыдущее изображение"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+      <button
+        @click="nextImage"
+        class="absolute cursor-pointer top-1/2 right-4 -translate-y-1/2 z-20 bg-black/20 bg-opacity-40 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-opacity-60"
+        aria-label="Следующее изображение"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     </div>
 
     <div class="text-center text-gray-500 mb-4">← Навигация клавишами и свайпом →</div>
 
     <div
       ref="thumbnailContainer"
-      class="flex gap-2 w-full overflow-x-auto pb-2"
+      class="flex gap-2 w-full overflow-x-auto p-2"
       style="scrollbar-width: none; -ms-overflow-style: none"
     >
       <img
@@ -26,7 +67,7 @@
         :key="index"
         :ref="
           (el) => {
-            if (el) thumbnailRefs[index] = el
+            if (el) thumbnailRefs[index] = el as HTMLElement
           }
         "
         :src="image.thumb"
@@ -44,14 +85,14 @@
 
   <div
     v-if="isModalOpen"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 bg-opacity-90 p-4"
     @click="closeModal"
   >
     <div class="relative w-full h-full flex items-center justify-center" @click.stop>
       <img
         :src="modalImage.src"
         :alt="modalImage.alt"
-        class="max-w-full max-h-full object-contain"
+        class="max-w-full max-h-full object-contain rounded-2xl"
       />
       <button
         @click="closeModal"
@@ -64,10 +105,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import g1 from '../assets/images/g1.jpg'
 import g2 from '../assets/images/g2.jpg'
-import g3 from '../assets/images/g3.jpg'
 import g4 from '../assets/images/g4.jpg'
 import g5 from '../assets/images/g5.jpg'
 import g6 from '../assets/images/g6.jpg'
@@ -78,36 +118,41 @@ import g9 from '../assets/images/g9.jpg'
 const images = [
   { src: g1, thumb: g1, alt: 'Паркет-елочка' },
   { src: g2, thumb: g2, alt: 'Светлая комната' },
-  { src: g3, thumb: g3, alt: 'Паркет-елочка' },
-  { src: g4, thumb: g4, alt: 'Паркет-елочка' },
-  { src: g5, thumb: g5, alt: 'Паркет-елочка' },
-  { src: g6, thumb: g6, alt: 'Паркет-елочка' },
-  { src: g7, thumb: g7, alt: 'Паркет-елочка' },
-  { src: g8, thumb: g8, alt: 'Паркет-елочка' },
-  { src: g9, thumb: g9, alt: 'Паркет-елочка' },
+  { src: g4, thumb: g4, alt: 'Современный дизайн' },
+  { src: g5, thumb: g5, alt: 'Паркет в спальне' },
+  { src: g6, thumb: g6, alt: 'Минималистичный коридор' },
+  { src: g7, thumb: g7, alt: 'Кухня с паркетом' },
+  { src: g8, thumb: g8, alt: 'Рабочее место' },
+  { src: g9, thumb: g9, alt: 'Уютный уголок' },
 ]
 
 const currentIndex = ref(0)
-const currentImage = ref(images[0])
+const currentImage = computed(() => images[currentIndex.value])
 const isModalOpen = ref(false)
 const modalImage = ref<any>({})
 
-// --- НОВЫЙ КОД ДЛЯ ПРОКРУТКИ И СВАЙПА ---
-
-// Refs для DOM-элементов
 const thumbnailContainer = ref<HTMLElement | null>(null)
 const thumbnailRefs = ref<HTMLElement[]>([])
 
-// Refs для отслеживания касаний
 const touchStartX = ref(0)
 const touchEndX = ref(0)
 
 const selectImage = (index: number) => {
   currentIndex.value = index
-  currentImage.value = images[index]
 }
 
-// Обработчики свайпа
+// --- 3. РЕФАКТОРИНГ ЛОГИКИ НАВИГАЦИИ ---
+const nextImage = () => {
+  const newIndex = (currentIndex.value + 1) % images.length
+  selectImage(newIndex)
+}
+
+const prevImage = () => {
+  const newIndex = (currentIndex.value - 1 + images.length) % images.length
+  selectImage(newIndex)
+}
+
+// Обработчики свайпа (используют новые функции)
 const handleTouchStart = (event: TouchEvent) => {
   touchStartX.value = event.touches[0].clientX
   touchEndX.value = 0
@@ -118,19 +163,15 @@ const handleTouchMove = (event: TouchEvent) => {
 }
 
 const handleTouchEnd = () => {
-  if (touchEndX.value === 0) return // Это был клик, а не свайп
+  if (touchEndX.value === 0) return // Клик, а не свайп
 
   const diff = touchStartX.value - touchEndX.value
   const threshold = 50 // Минимальная дистанция для свайпа
 
   if (diff > threshold) {
-    // Свайп влево -> следующее изображение
-    const newIndex = (currentIndex.value + 1) % images.length
-    selectImage(newIndex)
+    nextImage() // Свайп влево
   } else if (diff < -threshold) {
-    // Свайп вправо -> предыдущее изображение
-    const newIndex = (currentIndex.value - 1 + images.length) % images.length
-    selectImage(newIndex)
+    prevImage() // Свайп вправо
   }
 }
 
@@ -146,8 +187,7 @@ watch(currentIndex, (newIndex) => {
   }
 })
 
-// --- КОНЕЦ НОВОГО КОДА ---
-
+// Модальное окно
 const openModal = (image: { src: string; alt: string; thumb: string }) => {
   modalImage.value = image
   isModalOpen.value = true
@@ -157,6 +197,7 @@ const closeModal = () => {
   isModalOpen.value = false
 }
 
+// Навигация с клавиатуры (использует новые функции)
 const handleKeyDown = (event: KeyboardEvent) => {
   if (isModalOpen.value) {
     if (event.key === 'Escape') {
@@ -166,11 +207,9 @@ const handleKeyDown = (event: KeyboardEvent) => {
   }
 
   if (event.key === 'ArrowLeft') {
-    const newIndex = (currentIndex.value - 1 + images.length) % images.length
-    selectImage(newIndex)
+    prevImage()
   } else if (event.key === 'ArrowRight') {
-    const newIndex = (currentIndex.value + 1) % images.length
-    selectImage(newIndex)
+    nextImage()
   }
 }
 
