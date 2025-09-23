@@ -45,13 +45,14 @@
                 <div v-for="item in menuItem" class="rounded-lg shadow-lg">
                   <div class="rounded-t-lg relative">
                     <img
-                      src="../assets/images/unknown.png"
+                      :src="item.img"
                       alt="img"
                       class="rounded-t-lg object-cover w-full h-full max-h-40"
                     />
-                    <h3 class="absolute bottom-2 left-2 text-black font-semibold">
+                    <h3 class="absolute z-20 bottom-2 left-2 text-white font-semibold">
                       {{ item.title }}
                     </h3>
+                    <div class="absolute top-0 left-0 w-full h-full bg-black/20 rounded-t-lg"></div>
                   </div>
 
                   <div class="p-4 text-start">
@@ -145,6 +146,10 @@ import TheXCard from '@/components/TheXCard.vue'
 import ch1 from '@/assets/images/ch1.png'
 import ch2 from '@/assets/images/ch2.png'
 
+import p1 from '@/assets/images/selekt_p.jpg'
+import p2 from '@/assets/images/natur_p.jpg'
+import p3 from '@/assets/images/rustik_p.jpg'
+
 const tabs = [
   { key: 'wood', label: 'Сорта древесины' },
   { key: 'defects', label: 'Параметры пороков' },
@@ -164,6 +169,7 @@ const menuItem = [
       'Заболонь до 10% от площади планки',
       'Желтизна пятна и полосы/разноцветная химическая окраска не допускается',
     ],
+    img: p1,
   },
   {
     title: 'НАТУР',
@@ -175,6 +181,7 @@ const menuItem = [
       'Заболонь до 20% от площади планки',
       'Червоточина до 3 шт. на 1 м длины планки диаметром не более 3 мм',
     ],
+    img: p2,
   },
   {
     title: 'РУСТИК',
@@ -186,6 +193,7 @@ const menuItem = [
       'Заболонь не ограничивается',
       'Червоточина до 10 шт. диаметром не более 3 мм на 40 см длины планки',
     ],
+    img: p3,
   },
 ]
 

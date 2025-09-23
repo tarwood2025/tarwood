@@ -22,7 +22,7 @@
             <div>
               <h3 class="font-bold">Верхний слой - ламель</h3>
               <p class="text-tar-secondary text-sm sm:text-base">
-                Пиленый шпон из ценных пород древесины
+                Ламель из ценных пород древесины
               </p>
             </div>
           </div>

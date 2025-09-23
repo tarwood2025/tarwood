@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between items-center py-2 mx-auto w-full max-w-7xl">
+  <div class="flex justify-between items-center py-2 mx-auto w-full max-w-7xl">
     <!-- Лого -->
     <div>
       <img
@@ -10,18 +10,30 @@
       />
     </div>
 
-    <!-- Десктопное меню -->
     <nav class="hidden md:block relative">
       <ul class="flex font-semibold text-base lg:text-lg space-x-6 lg:space-x-12">
-        <li v-for="(item, idx) in routerMenu" :key="idx" class="cursor-pointer">
+        <li
+          v-for="(item, idx) in routerMenu"
+          :key="idx"
+          class="cursor-pointer hover:border-b border-tar-green transition duration-100"
+        >
           <router-link :to="item.to">{{ item.name }}</router-link>
         </li>
 
-        <!-- Dropdown -->
         <li class="relative group">
-          <span class="cursor-pointer">Информация</span>
+          <span class="cursor-pointer flex items-center gap-2">
+            Информация
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="currentColor"
+              class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 mt-1"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </span>
 
-          <!-- Выпадающее меню -->
           <ul
             class="absolute z-20 left-0 mt-2 w-48 bg-white shadow-lg rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
           >
@@ -35,62 +47,46 @@
       </ul>
     </nav>
 
-    <!-- Кнопка (десктоп) -->
     <div class="hidden md:block px-4">
       <TButton @click="$router.push('/contacts')">Связаться с нами</TButton>
     </div>
 
-    <!-- Мобильный бургер -->
     <button class="md:hidden text-2xl px-4" @click="isOpen = true">☰</button>
-  </header>
+  </div>
 
-  <!-- Мобильное меню (оверлей) -->
   <transition name="fade">
-    <div
+    <aside
       v-if="isOpen"
       class="fixed inset-0 bg-white/30 backdrop-blur-sm z-40"
       @click.self="isOpen = false"
     >
       <div class="absolute top-0 right-0 w-64 h-full bg-white shadow-lg p-6 z-50 flex flex-col">
-        <!-- Закрыть -->
         <button class="self-end text-2xl mb-6" @click="isOpen = false">✕</button>
 
-        <!-- Навигация -->
         <nav>
           <ul class="space-y-4 font-semibold text-lg">
-            <li v-for="(item, idx) in routerMenu" :key="idx">
+            <li v-for="(item, idx) in [...routerMenu, ...infoMenu]" :key="idx">
               <router-link :to="item.to" class="block" @click="isOpen = false">
                 {{ item.name }}
               </router-link>
             </li>
-
-            <!-- Dropdown для мобильного -->
-            <li>
-              <button
-                class="w-full text-left flex justify-between items-center"
-                @click="isInfoOpen = !isInfoOpen"
-              >
-                Информация
-                <span>{{ isInfoOpen ? '−' : '+' }}</span>
-              </button>
-
-              <ul v-if="isInfoOpen" class="mt-2 pl-4 space-y-2">
-                <li v-for="(item, idx) in infoMenu" :key="idx">
-                  <router-link :to="item.to" class="block" @click="isOpen = false">
-                    {{ item.name }}
-                  </router-link>
-                </li>
-              </ul>
-            </li>
           </ul>
         </nav>
 
-        <!-- Кнопка -->
         <div class="mt-auto pt-6">
-          <TButton class="w-full">Связаться с нами</TButton>
+          <TButton
+            @click="
+              () => {
+                $router.push('/contacts')
+                isOpen = false
+              }
+            "
+            class="w-full"
+            >Связаться с нами</TButton
+          >
         </div>
       </div>
-    </div>
+    </aside>
   </transition>
 </template>
 

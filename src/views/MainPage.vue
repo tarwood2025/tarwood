@@ -1,11 +1,11 @@
 <template>
-  <main>
+  <div>
     <TheTitle />
     <TheAdvantages :info-list="infoList" />
     <TheDoubleConstruction :tehno-list="tehnoList" />
     <TheSertificats :cert-list="certList" />
     <TheChouse />
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -34,7 +34,7 @@ const infoList = [
   },
   {
     title: 'Простой монтаж',
-    description: 'Замковое соединение позволяет быстро и легко укладывать покрытие',
+    description: 'Быстрая и легкая процедура монтажа напольного покрытия',
     icon: img3,
   },
   {
@@ -65,12 +65,12 @@ const certList = [
   {
     title: 'Свидетельство о технической компетентности',
     description: 'Подтверждает техническую компетентность в области производства инженерной доски',
-    url: 'https://vh296-fm.sweb.ru/files/tarwood/public_html/tarwood/images/docs/certificate-1.pdf',
+    url: 'https://xn--80aeg0cij.xn--p1ai/tarwood/images/docs/certificate-1.pdf',
   },
   {
     title: 'Техническое свидетельство пригодности материалов',
     description: 'Подтверждает пригодность материалов и изделий для применения в строительстве',
-    url: 'https://vh296-fm.sweb.ru/files/tarwood/public_html/tarwood/images/docs/certificate-2.pdf',
+    url: 'https://xn--80aeg0cij.xn--p1ai/tarwood/images/docs/certificate-2.pdf',
   },
 ]
 </script>

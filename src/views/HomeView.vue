@@ -1,11 +1,15 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col relative">
     <!-- HEADER -->
-    <TheHeader :router-menu="routerMenu" />
+    <header class="sticky top-0 z-30 bg-white">
+      <TheHeader :router-menu="routerMenu" />
+    </header>
 
-    <Transition name="fade" mode="out-in">
-      <RouterView />
-    </Transition>
+    <main>
+      <Transition name="fade" mode="out-in">
+        <RouterView />
+      </Transition>
+    </main>
 
     <!-- FOOTER -->
     <TheFooter />

@@ -44,7 +44,7 @@
           <div class="flex-1 w-full order-1 lg:order-2">
             <img
               class="w-full rounded-2xl max-w-md lg:max-w-lg xl:max-w-xl h-64 sm:h-80 md:h-96 object-cover border border-gray-200 mx-auto"
-              src="../assets/images/unknown.png"
+              :src="mission"
               alt="Производство паркетной доски TARWOOD"
             />
           </div>
@@ -139,6 +139,7 @@ import icon1 from '@/assets/images/progress-upload.svg'
 import icon2 from '@/assets/images/home-lightbulb-outline.svg'
 import icon3 from '@/assets/images/check-decagram.svg'
 import icon4 from '@/assets/images/account-group.svg'
+import mission from '@/assets/images/mission.jpg'
 
 const timeline = [
   {

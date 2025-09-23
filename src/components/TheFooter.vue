@@ -13,7 +13,7 @@
       <div>
         <h3 class="font-semibold text-lg mb-1.5">Навигация</h3>
         <ul class="space-y-1 text-sm sm:text-base">
-          <li v-for="(item, idx) in routerMenu" :key="idx">
+          <li class="hover:underline max-w-max" v-for="(item, idx) in routerMenu" :key="idx">
             <router-link :to="item.to">{{ item.name }}</router-link>
           </li>
         </ul>

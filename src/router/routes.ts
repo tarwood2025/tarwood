@@ -26,7 +26,7 @@ export const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        path: '/product/:id',
+        path: '/product/:slug',
         name: 'porductCard',
         component: () => import('@/views/ProductPage.vue'),
         meta: {
