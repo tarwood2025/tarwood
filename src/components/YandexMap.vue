@@ -126,6 +126,7 @@ interface Dealer {
 
 interface City {
   id: number
+  center: [number, number]
   name: string
   dealers: Dealer[]
 }
@@ -134,13 +135,14 @@ interface City {
 const map = ref<any>(null)
 const activeCityId = ref<number | null>(null)
 const selectedDealer = ref<Dealer | null>(null)
-const mapZoom = ref<number>(9)
+const mapZoom = ref<number>(8)
 const mapCenter = ref<[number, number]>([37.617644, 55.755819]) // Initial center (Moscow)
 
 // --- DATA ---
 const cities = ref<City[]>([
   {
     id: 1,
+    center: [37.617644, 55.755819],
     name: 'Москва',
     dealers: [
       {
@@ -217,6 +219,7 @@ const cities = ref<City[]>([
   },
   {
     id: 2,
+    center: [30.314997, 59.938784],
     name: 'Санкт-Петербург',
     dealers: [
       {
@@ -272,6 +275,7 @@ const cities = ref<City[]>([
   },
   {
     id: 3,
+    center: [37.827203, 48.001211],
     name: 'Донецк',
     dealers: [
       {
@@ -285,6 +289,7 @@ const cities = ref<City[]>([
   },
   {
     id: 4,
+    center: [39.173143, 51.668907],
     name: 'Воронеж',
     dealers: [
       {
@@ -326,6 +331,7 @@ const cities = ref<City[]>([
   },
   {
     id: 5,
+    center: [50.128291, 53.19723],
     name: 'Самара',
     dealers: [
       {
@@ -339,6 +345,7 @@ const cities = ref<City[]>([
   },
   {
     id: 6,
+    center: [60.562774, 56.836065],
     name: 'Екатеринбург',
     dealers: [
       {
@@ -352,6 +359,7 @@ const cities = ref<City[]>([
   },
   {
     id: 7,
+    center: [33.520644, 44.603064],
     name: 'Севастополь',
     dealers: [
       {
@@ -365,6 +373,7 @@ const cities = ref<City[]>([
   },
   {
     id: 8,
+    center: [39.730392, 47.231508],
     name: 'Ростов-на-Дону',
     dealers: [
       {
@@ -378,6 +387,7 @@ const cities = ref<City[]>([
   },
   {
     id: 9,
+    center: [47.507186, 42.963947],
     name: 'Махачкала',
     dealers: [
       {
@@ -398,6 +408,7 @@ const cities = ref<City[]>([
   },
   {
     id: 10,
+    center: [61.365408, 55.155638],
     name: 'Челябинск',
     dealers: [
       {
@@ -411,6 +422,7 @@ const cities = ref<City[]>([
   },
   {
     id: 11,
+    center: [43.032984, 44.040936],
     name: 'Пятигорск',
     dealers: [
       {
@@ -426,6 +438,8 @@ const cities = ref<City[]>([
 
 // --- METHODS ---
 const toggleCity = (cityId: number) => {
+  mapZoom.value = 10
+  mapCenter.value = cities.value.find((c) => c.id === cityId)!.center
   activeCityId.value = activeCityId.value === cityId ? null : cityId
 }
 
@@ -438,32 +452,6 @@ const selectDealer = (dealer: Dealer) => {
   if (city) {
     activeCityId.value = city.id
   }
-}
-
-// Новая функция для правильного склонения
-const pluralizeDealer = (count: number) => {
-  const cases = [2, 0, 1, 1, 1, 2]
-  const titles = ['дилер', 'дилера', 'дилеров']
-  return titles[count % 100 > 4 && count % 100 < 20 ? 2 : cases[count % 10 < 5 ? count % 10 : 5]]
-}
-
-// --- ACCORDION ANIMATION ---
-const enter = (element: Element) => {
-  const el = element as HTMLElement
-  el.style.height = 'auto'
-  const height = getComputedStyle(el).height
-  el.style.height = '0'
-  requestAnimationFrame(() => {
-    el.style.height = height
-  })
-}
-
-const leave = (element: Element) => {
-  const el = element as HTMLElement
-  el.style.height = getComputedStyle(el).height
-  requestAnimationFrame(() => {
-    el.style.height = '0'
-  })
 }
 </script>
 

@@ -10,7 +10,7 @@
       <img
         :key="currentImage.src"
         :src="currentImage.src"
-        alt=""
+        alt="img"
         class="relative z-10 w-full h-full object-contain cursor-pointer transition-opacity duration-500"
         @click="openModal(currentImage)"
         @touchstart="handleTouchStart"

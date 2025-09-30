@@ -1,18 +1,52 @@
 <template>
   <div>
-    <section class="bg-[#F5F1EB] py-10 md:py-18 px-4">
-      <div class="mx-auto text-center space-y-4 max-w-3xl">
+    <section class="bg-[#F5F1EB] py-10 md:py-14 px-4">
+      <div class="mx-auto text-center space-y-4 mb-6 max-w-3xl">
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold">Каталог продукции</h2>
         <p class="text-sm sm:text-base">
           Широкий выбор инженерной доски из различных пород древесины <br />
-          Каждый продукт сочетает в себе красоту, качество и долговечность
+          Каждый продукт сочетает в себе красоту, качество и долговечность <br />
+          <span class="font-semibold">Ниже приведены примеры укладок</span>
         </p>
+      </div>
+
+      <div class="grid gap-6 cols-3 grid-cols-3 max-w-5xl mx-auto">
+        <div class="text-center">
+          <h3 class="mb-2 text-sm font-medium">Палубная доска</h3>
+          <img
+            title="Палубная доска"
+            src="../assets/images/paluba.jpg"
+            alt="Палубная доска"
+            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+          />
+        </div>
+
+        <div class="text-center">
+          <h3 class="mb-2 text-sm font-medium">Венгерская елка</h3>
+          <img
+            title="Венгерская елка"
+            src="../assets/images/ven.jpg"
+            alt="Венгерская елка"
+            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+          />
+        </div>
+
+        <div class="text-center">
+          <h3 class="mb-2 text-sm font-medium">Французская елка</h3>
+          <img
+            title="Французская елка"
+            src="../assets/images/fr.jpg"
+            alt="Французская елка"
+            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+          />
+        </div>
       </div>
     </section>
 
     <section>
       <div class="p-6 max-w-7xl text-center mx-auto">
         <!-- Фильтры -->
+
         <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6">
           <button
             v-for="filter in filters"
@@ -523,3 +557,13 @@ function openCard(item) {
   router.push({ name: 'porductCard', params: { slug: item.id } })
 }
 </script>
+
+<style scoped>
+@layer utilities {
+  @media (max-width: 460px) {
+    .cols-3 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+}
+</style>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ImageViewer from '../components/ImageViewer.vue'
-import fontImg from '@/assets/images/font.jpg'
 </script>
 
 <template>
@@ -15,13 +14,8 @@ import fontImg from '@/assets/images/font.jpg'
       </div>
     </section>
 
-    <section class="relative">
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url(fontImg)"></div>
-      <div class="absolute inset-0 bg-black opacity-20"></div>
-
-      <div class="relative z-10 p-4">
-        <ImageViewer />
-      </div>
+    <section class="relative bg-black/20 py-8">
+      <ImageViewer />
     </section>
   </div>
 </template>
