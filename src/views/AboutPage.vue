@@ -172,7 +172,7 @@ const timeline = [
 
 const stats = [
   { value: '10+', label: 'лет опыта', icon: icon1 },
-  { value: 'N+', label: 'проектов', icon: icon2 },
+  { value: '5000+', label: 'проектов', icon: icon2 },
   { value: '100%', label: 'качество', icon: icon3 },
   { value: 'N+', label: 'партнеров', icon: icon4 },
 ]

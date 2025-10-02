@@ -24,7 +24,7 @@
               :key="dealer.id"
               @click="$emit('selectDealer', dealer)"
               class="px-4 py-2 border-t border-gray-100 cursor-pointer hover:bg-blue-50"
-              :class="{ 'bg-blue-100/25': selectedDealer && selectedDealer.id === dealer.id }"
+              :class="{ 'bg-blue-100': selectedDealer && selectedDealer.id === dealer.id }"
             >
               <p class="font-bold text-md">{{ dealer.name }}</p>
               <p class="text-sm text-gray-600">{{ dealer.address }}</p>

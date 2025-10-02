@@ -10,34 +10,46 @@
         </p>
       </div>
 
-      <div class="grid gap-6 cols-3 grid-cols-3 max-w-5xl mx-auto">
-        <div class="text-center">
+      <div class="grid gap-2 grid-cols-3 max-w-5xl mx-auto">
+        <div
+          @click="() => (activeFilter = 'Палубная доска')"
+          class="text-center cursor-pointer hover:shadow-lg p-4 rounded-lg flex flex-col max-w-max"
+          :class="activeFilter === 'Палубная доска' ? 'bg-tar-secondary/30 text-white' : ''"
+        >
           <h3 class="mb-2 text-sm font-medium">Палубная доска</h3>
           <img
             title="Палубная доска"
             src="../assets/images/paluba.jpg"
             alt="Палубная доска"
-            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+            class="rounded-lg shadow-md object-cover max-w-52"
           />
         </div>
 
-        <div class="text-center">
+        <div
+          @click="() => (activeFilter = 'Венгерская елка')"
+          class="text-center cursor-pointer hover:shadow-md p-4 rounded-lg flex flex-col max-w-max"
+          :class="activeFilter === 'Венгерская елка' ? 'bg-tar-secondary/30 text-white' : ''"
+        >
           <h3 class="mb-2 text-sm font-medium">Венгерская елка</h3>
           <img
             title="Венгерская елка"
             src="../assets/images/ven.jpg"
             alt="Венгерская елка"
-            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+            class="rounded-lg shadow-md object-cover max-w-52"
           />
         </div>
 
-        <div class="text-center">
+        <div
+          @click="() => (activeFilter = 'Французская елка')"
+          class="text-center cursor-pointer hover:shadow-md p-4 rounded-lg flex flex-col max-w-max"
+          :class="activeFilter === 'Французская елка' ? 'bg-tar-secondary/30 text-white' : ''"
+        >
           <h3 class="mb-2 text-sm font-medium">Французская елка</h3>
           <img
             title="Французская елка"
             src="../assets/images/fr.jpg"
             alt="Французская елка"
-            class="rounded-lg shadow-md object-cover w-[70%] mx-auto"
+            class="rounded-lg shadow-md object-cover max-w-52"
           />
         </div>
       </div>
@@ -45,24 +57,6 @@
 
     <section>
       <div class="p-6 max-w-7xl text-center mx-auto">
-        <!-- Фильтры -->
-
-        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6">
-          <button
-            v-for="filter in filters"
-            :key="filter"
-            @click="activeFilter = filter"
-            :class="[
-              'px-3 sm:px-4 py-1.5 rounded-lg border text-sm sm:text-base transition cursor-pointer',
-              activeFilter === filter
-                ? 'bg-tar-green text-white border-tar-green hover:bg-tar-green-hover'
-                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
-            ]"
-          >
-            {{ filter }}
-          </button>
-        </div>
-
         <!-- Сетка товаров -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
           <div
@@ -106,7 +100,6 @@ import TheUnknownImg from '@/ui/TheUnknownImg.vue'
 import { ref, computed, TransitionGroup } from 'vue'
 import router from '@/router'
 
-const filters = ['Все', 'Палубная доска', 'Венгерская елка', 'Французская елка']
 const activeFilter = ref('Все')
 
 const items = ref([

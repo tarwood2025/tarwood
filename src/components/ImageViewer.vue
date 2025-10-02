@@ -83,6 +83,7 @@
     </div>
   </div>
 
+  <!-- Модальное окно с навигацией -->
   <div
     v-if="isModalOpen"
     class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 bg-opacity-90 p-4"
@@ -94,12 +95,60 @@
         :alt="modalImage.alt"
         class="max-w-full max-h-full object-contain rounded-2xl"
       />
+
+      <!-- Кнопка закрытия -->
       <button
         @click="closeModal"
-        class="absolute top-4 right-4 text-white text-3xl font-bold bg-transparent border-none cursor-pointer"
+        class="absolute top-4 right-4 text-white text-3xl font-bold bg-black/50 rounded-3xl w-12 h-12 flex items-center justify-center cursor-pointer hover:bg-black/70 transition-colors duration-200 z-30"
       >
         &times;
       </button>
+
+      <!-- Кнопка предыдущего изображения в модальном окне -->
+      <button
+        @click.stop="prevImageInModal"
+        class="absolute left-4 top-1/2 cursor-pointer -translate-y-1/2 z-20 bg-black/50 text-white rounded-full p-4 transition-opacity duration-300 hover:bg-black/70"
+        aria-label="Предыдущее изображение"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- Кнопка следующего изображения в модальном окне -->
+      <button
+        @click.stop="nextImageInModal"
+        class="absolute right-4 top-1/2 cursor-pointer -translate-y-1/2 z-20 bg-black/50 text-white rounded-full p-4 transition-opacity duration-300 hover:bg-black/70"
+        aria-label="Следующее изображение"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Индикатор текущего изображения -->
+      <div
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/50 text-white px-4 py-2 rounded-full text-sm"
+      >
+        {{ modalCurrentIndex + 1 }} / {{ images.length }}
+      </div>
     </div>
   </div>
 </template>
@@ -130,6 +179,7 @@ const currentIndex = ref(0)
 const currentImage = computed(() => images[currentIndex.value])
 const isModalOpen = ref(false)
 const modalImage = ref<any>({})
+const modalCurrentIndex = ref(0) // Текущий индекс в модальном окне
 
 const thumbnailContainer = ref<HTMLElement | null>(null)
 const thumbnailRefs = ref<HTMLElement[]>([])
@@ -141,7 +191,7 @@ const selectImage = (index: number) => {
   currentIndex.value = index
 }
 
-// --- 3. РЕФАКТОРИНГ ЛОГИКИ НАВИГАЦИИ ---
+// Навигация в основном виде
 const nextImage = () => {
   const newIndex = (currentIndex.value + 1) % images.length
   selectImage(newIndex)
@@ -150,6 +200,21 @@ const nextImage = () => {
 const prevImage = () => {
   const newIndex = (currentIndex.value - 1 + images.length) % images.length
   selectImage(newIndex)
+}
+
+// Навигация в модальном окне
+const nextImageInModal = () => {
+  modalCurrentIndex.value = (modalCurrentIndex.value + 1) % images.length
+  modalImage.value = images[modalCurrentIndex.value]
+  // Синхронизируем с основным индексом
+  currentIndex.value = modalCurrentIndex.value
+}
+
+const prevImageInModal = () => {
+  modalCurrentIndex.value = (modalCurrentIndex.value - 1 + images.length) % images.length
+  modalImage.value = images[modalCurrentIndex.value]
+  // Синхронизируем с основным индексом
+  currentIndex.value = modalCurrentIndex.value
 }
 
 // Обработчики свайпа (используют новые функции)
@@ -169,9 +234,17 @@ const handleTouchEnd = () => {
   const threshold = 50 // Минимальная дистанция для свайпа
 
   if (diff > threshold) {
-    nextImage() // Свайп влево
+    if (isModalOpen.value) {
+      nextImageInModal() // Свайп влево в модальном окне
+    } else {
+      nextImage() // Свайп влево в основном виде
+    }
   } else if (diff < -threshold) {
-    prevImage() // Свайп вправо
+    if (isModalOpen.value) {
+      prevImageInModal() // Свайп вправо в модальном окне
+    } else {
+      prevImage() // Свайп вправо в основном виде
+    }
   }
 }
 
@@ -190,6 +263,7 @@ watch(currentIndex, (newIndex) => {
 // Модальное окно
 const openModal = (image: { src: string; alt: string; thumb: string }) => {
   modalImage.value = image
+  modalCurrentIndex.value = currentIndex.value
   isModalOpen.value = true
 }
 
@@ -197,19 +271,22 @@ const closeModal = () => {
   isModalOpen.value = false
 }
 
-// Навигация с клавиатуры (использует новые функции)
+// Навигация с клавиатуры
 const handleKeyDown = (event: KeyboardEvent) => {
   if (isModalOpen.value) {
     if (event.key === 'Escape') {
       closeModal()
+    } else if (event.key === 'ArrowLeft') {
+      prevImageInModal()
+    } else if (event.key === 'ArrowRight') {
+      nextImageInModal()
     }
-    return
-  }
-
-  if (event.key === 'ArrowLeft') {
-    prevImage()
-  } else if (event.key === 'ArrowRight') {
-    nextImage()
+  } else {
+    if (event.key === 'ArrowLeft') {
+      prevImage()
+    } else if (event.key === 'ArrowRight') {
+      nextImage()
+    }
   }
 }
 
