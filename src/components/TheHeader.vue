@@ -10,7 +10,7 @@
       />
     </div>
 
-    <nav class="hidden md:block relative">
+    <nav class="hidden lg:block relative">
       <ul class="flex font-semibold text-base lg:text-lg space-x-6 lg:space-x-12">
         <li
           v-for="(item, idx) in routerMenu"
@@ -47,11 +47,11 @@
       </ul>
     </nav>
 
-    <div class="hidden md:block px-4">
+    <div class="hidden lg:block px-4">
       <TButton @click="$router.push('/contacts')">Связаться с нами</TButton>
     </div>
 
-    <button class="md:hidden text-2xl px-4" @click="isOpen = true">☰</button>
+    <button class="lg:hidden text-2xl px-4" @click="isOpen = true">☰</button>
   </div>
 
   <transition name="fade">
@@ -82,8 +82,9 @@
               }
             "
             class="w-full"
-            >Связаться с нами</TButton
           >
+            Связаться с нами
+          </TButton>
         </div>
       </div>
     </aside>
