@@ -173,6 +173,26 @@ const images = [
   { src: g7, thumb: g7, alt: 'Кухня с паркетом' },
   { src: g8, thumb: g8, alt: 'Рабочее место' },
   { src: g9, thumb: g9, alt: 'Уютный уголок' },
+  {
+    src: 'https://goldenwood.pro/goldenwood/img/gall/gal-01.jpg',
+    thumb: 'https://goldenwood.pro/goldenwood/img/gall/gal-01-s.jpg',
+    alt: 'Паркет-елочка',
+  },
+  {
+    src: 'https://goldenwood.pro/goldenwood/img/gall/gal-37.jpg',
+    thumb: 'https://goldenwood.pro/goldenwood/img/gall/gal-37-s.jpg',
+    alt: 'Паркет-елочка',
+  },
+  {
+    src: 'https://goldenwood.pro/goldenwood/img/gall/gal-36.jpg',
+    thumb: 'https://goldenwood.pro/goldenwood/img/gall/gal-36-s.jpg',
+    alt: 'Паркет-елочка',
+  },
+  {
+    src: 'https://goldenwood.pro/goldenwood/img/gall/gal-30.jpg',
+    thumb: 'https://goldenwood.pro/goldenwood/img/gall/gal-30-s.jpg',
+    alt: 'Паркет-елочка',
+  },
 ]
 
 const currentIndex = ref(0)

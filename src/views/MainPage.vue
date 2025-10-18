@@ -65,12 +65,12 @@ const certList = [
   {
     title: 'Свидетельство о технической компетентности',
     description: 'Подтверждает техническую компетентность в области производства инженерной доски',
-    url: 'https://xn--80aeg0cij.xn--p1ai/tarwood/images/docs/certificate-1.pdf',
+    url: 'https://xn--80aeg0cij.xn--p1ai/docs/certificate-1.pdf',
   },
   {
     title: 'Техническое свидетельство пригодности материалов',
     description: 'Подтверждает пригодность материалов и изделий для применения в строительстве',
-    url: 'https://xn--80aeg0cij.xn--p1ai/tarwood/images/docs/certificate-2.pdf',
+    url: 'https://xn--80aeg0cij.xn--p1ai/docs/certificate-2.pdf',
   },
 ]
 </script>
