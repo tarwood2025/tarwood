@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="bg-[#F5F1EB] py-10 md:py-14 px-4">
+    <section class="bg-[#F5F1EB] py-6 md:py-8 px-4">
       <div class="mx-auto text-center space-y-4 mb-6 max-w-3xl">
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold">Каталог продукции</h2>
         <p class="text-sm sm:text-base">
@@ -10,7 +10,7 @@
         </p>
       </div>
 
-      <div class="flex justify-between gap-2 sm:gap-4 max-w-5xl mx-auto relative">
+      <div class="flex justify-between mb-4 gap-2 sm:gap-4 max-w-5xl mx-auto relative">
         <div class="text-center p-2 rounded-lg flex flex-col w-full h-full">
           <h3 class="mb-1 sm:mb-2 text-xs sm:text-sm font-medium">Палубная доска</h3>
           <img
@@ -41,6 +41,20 @@
           />
         </div>
       </div>
+
+      <div class="text-center">
+        <a
+          href="https://disk.yandex.ru/d/ALq43jUURlfuMA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full"
+        >
+          <TButton>
+            Смотреть каталог
+            <img src="../assets/images/download.svg" alt="download" class="inline ml-2" />
+          </TButton>
+        </a>
+      </div>
     </section>
 
     <section class="bg-white min-h-screen py-10">
@@ -65,6 +79,7 @@
 import DeskCard from '@/components/DeskCard.vue'
 import DeskCardDesktop from '@/components/DeskCardDesktop.vue'
 import TheChouse from '@/components/TheChouse.vue'
+import TButton from '@/ui/TButton.vue'
 import { ref, computed, watch } from 'vue'
 
 const items = ref([

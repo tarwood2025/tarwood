@@ -442,7 +442,7 @@ const items = ref([
     title: 'Дуб Пепел',
     img: 'https://xn--80aeg0cij.xn--p1ai/img/fr/8_fr_ExtraGreiy.webp',
     type: 'Французская елка',
-    id: 'dub-pepel-francuzskaya-elka',
+    id: 'dub-pepel-greiy-francuzskaya-elka',
   },
   {
     title: 'Дуб Экстра Лава',
