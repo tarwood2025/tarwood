@@ -582,7 +582,7 @@ const productConfigurations = [
     title: 'Французская елка',
     list: [
       { thickness: 14, width: 120, length: 585, m2: 0.98 },
-      { thickness: 14, width: 120, length: 500, m2: 0.98 },
+      { thickness: 14, width: 140, length: 500, m2: 0.98 },
     ],
   },
 ]
